@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoviePlus.Application\MoviePlus.Application.csproj" />
+    <ProjectReference Include="..\MoviePlus.DataAccess\MoviePlus.DataAccess.csproj" />
+    <ProjectReference Include="..\MoviePlus.Domain\MoviePlus.Domain.csproj" />
+    <ProjectReference Include="..\MoviePlus.Implementation\MoviePlus.Implementation.csproj" />
+  </ItemGroup>
+
+
+</Project>

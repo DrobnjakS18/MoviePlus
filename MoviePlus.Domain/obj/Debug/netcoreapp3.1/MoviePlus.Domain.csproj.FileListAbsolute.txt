@@ -1,0 +1,9 @@
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\bin\Debug\netcoreapp3.1\MoviePlus.Domain.deps.json
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\bin\Debug\netcoreapp3.1\MoviePlus.Domain.dll
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.csprojAssemblyReference.cache
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.AssemblyInfoInputs.cache
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.AssemblyInfo.cs
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\bin\Debug\netcoreapp3.1\MoviePlus.Domain.pdb
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.dll
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.pdb

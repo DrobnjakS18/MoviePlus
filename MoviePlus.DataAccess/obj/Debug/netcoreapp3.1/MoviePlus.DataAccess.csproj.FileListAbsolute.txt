@@ -1,0 +1,15 @@
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.Domain.dll
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.csprojAssemblyReference.cache
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.AssemblyInfo.cs
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.DataAccess.deps.json
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.DataAccess.runtimeconfig.json
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.DataAccess.runtimeconfig.dev.json
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.DataAccess.dll
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.DataAccess.pdb
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\bin\Debug\netcoreapp3.1\MoviePlus.Domain.pdb
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.csproj.CopyComplete
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.dll
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.pdb
+C:\Users\Threedium\source\repos\MoviePlus\MoviePlus.DataAccess\obj\Debug\netcoreapp3.1\MoviePlus.DataAccess.genruntimeconfig.cache
