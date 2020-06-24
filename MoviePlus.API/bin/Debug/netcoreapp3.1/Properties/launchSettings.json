@@ -11,21 +11,21 @@
   "profiles": {
     "Dev": {
       "commandName": "Project",
-      "applicationUrl": "http://localhost:5101",
+      "applicationUrl": "http://0.0.0.0:5101",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Test": {
       "commandName": "Project",
-      "applicationUrl": "http://localhost:5102",
+      "applicationUrl": "http://0.0.0.0:5102",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Test"
       }
     },
     "Prod": {
       "commandName": "Project",
-      "applicationUrl": "http://localhost:5103",
+      "applicationUrl": "http://0.0.0.0:5103",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }

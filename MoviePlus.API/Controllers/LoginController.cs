@@ -11,17 +11,15 @@ namespace MoviePlus.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TokenController : ControllerBase
+    public class LoginController : ControllerBase
     {
-
         private readonly JwtManager _token;
-
-        public TokenController(JwtManager token)
+        public LoginController(JwtManager token)
         {
             _token = token;
         }
 
-        // POST api/token
+        // POST api/login
         [HttpPost]
         public IActionResult Post([FromBody] LoginRequest request)
         {
