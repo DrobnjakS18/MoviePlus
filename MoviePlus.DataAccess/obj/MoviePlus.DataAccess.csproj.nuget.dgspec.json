@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {}
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
         "projectName": "MoviePlus.DataAccess",
-        "projectPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
+        "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
         "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
-                "projectPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj"
+              "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
+                "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj"
               }
             }
           }
@@ -82,14 +82,14 @@
         }
       }
     },
-    "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
         "projectName": "MoviePlus.Domain",
-        "projectPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
+        "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
         "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",

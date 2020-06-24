@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200623143943_user config.Designer.cs" />
     <Compile Remove="Migrations\20200623144052_set current date.cs" />
     <Compile Remove="Migrations\20200623144052_set current date.Designer.cs" />
+    <Compile Remove="Migrations\20200624094625_all db configurations.cs" />
+    <Compile Remove="Migrations\20200624094625_all db configurations.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

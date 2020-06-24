@@ -10,8 +10,10 @@ namespace MoviePlus.Domain
 
         public int ScreeningId { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public User User { get; set; }
 
         public Screening Screening { get; set; }
+
+        public ICollection<SeatReserved> SeatReserved { get; set; }
     }
 }

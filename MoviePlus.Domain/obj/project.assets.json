@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
       "projectName": "MoviePlus.Domain",
-      "projectPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
+      "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
       "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Threedium\\source\\repos\\MoviePlus\\MoviePlus.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -6,7 +6,6 @@ namespace MoviePlus.Domain
 {
     public class UserUseCases : Entity
     {
-
         public int UserId { get; set; }
 
         public int UseCaseId { get; set; }

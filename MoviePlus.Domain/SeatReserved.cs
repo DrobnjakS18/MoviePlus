@@ -12,9 +12,8 @@ namespace MoviePlus.Domain
 
         public int ScreeningId { get; set; }
 
-
-        public ICollection<Seat> Seats { get; set; }
-        public ICollection<Reservation> Reservations { get; set; }
-        public ICollection<Screening> Screenings { get; set; }
+        public Seat Seat { get; set; }
+        public Reservation Reservation { get; set; }
+        public Screening Screening { get; set; }
     }
 }

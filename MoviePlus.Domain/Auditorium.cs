@@ -10,5 +10,9 @@ namespace MoviePlus.Domain
         public string Name { get; set; }
 
         public int SeatNumbers { get; set; }
+
+        public ICollection<Screening> Screenings { get; set; }
+
+        public ICollection<Seat> Seats { get; set; }
     }
 }
