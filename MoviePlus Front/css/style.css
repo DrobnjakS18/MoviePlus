@@ -1,4 +1,17 @@
-.navbar {
-    background: black;
-    height: 4rem;
+.navbar-brand  {
+    font-size: 2.5rem;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+#date {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    height: 2.5rem;
+}
+
+.single-movie p{
+    margin: 5px 0;
 }

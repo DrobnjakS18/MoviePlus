@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movie Plus</title>
+    <title>Movie Plus Profile</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -38,27 +38,20 @@
     <div class="container my-5">
       <div class="row">
         <div class="col-12">
-          <h2 class="text-center">Movies</h2>
+          <h2>User Profile</h2>
         </div>
       </div>
-      <div class="row mt-5 text-center">
-        <div class="col-2 ">
-          <span>Per Page:</span>
-          <select id="perPage" class="form-control">
-            <option value="2" selected>2</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-          </select>
-        </div>
-        <div class="col-2">
-          <span>Date:</span>
-          <input type="date" id="date" name="date">
-        </div>
+      <div class="row mt-2 pl-3 d-flex flex-column">
+        <p class="h5"><b>First Name:</b> First</p>
+        <p class="h5"><b>Last Name:</b> Last</p>
+        <p class="h5"><b>Username:</b> username</p>
+        <p class="h5"><b>Email:</b> Email</p>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-12">
            <div class="row">
-             <div class="col-12 my-3 d-flex rounded">
+            <h4><u>Tickets:</u></h4>
+             <div class="col-12  d-flex rounded">
                <div class="col-3">
                 <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
                </div>
@@ -67,54 +60,14 @@
                  <p><b>Descripiton:</b> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae animi quos sequi molestias laudantium similique placeat. Rerum veritatis doloremque sunt officiis, eos omnis architecto iure quod corrupti excepturi blanditiis debitis.</p>
                  <p><b>Duration</b>: 100</p>
                  <p><b>Auditorium</b>: 1</p>
-                 <p><b>Number of available tickets</b>: 5</p>
-                 <button class="btn btn-primary">Buy Ticket</button>
+                 <p><b>Row</b>: 5</p>
+                 <p><b>Seat number</b>: 2</p>
                 </div>
              </div>
-             
-             <div class="col-12 my-3 d-flex rounded">
-              <div class="col-3">
-               <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
-              </div>
-              <div class="col-9 my-auto single-movie">
-                <h5><b>Title</b>: Title 2</h5>
-                <p><b>Descripiton:</b> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae animi quos sequi molestias laudantium similique placeat. Rerum veritatis doloremque sunt officiis, eos omnis architecto iure quod corrupti excepturi blanditiis debitis.</p>
-                <p><b>Duration</b>: 100</p>
-                <p><b>Auditorium</b>: 2</p>
-                <p><b>Number of available tickets</b>: 5</p>
-                <button class="btn btn-primary">Buy Ticket</button>
-               </div>
-            </div>
-           </div>
-           <strong class="h4">Total Items:</strong> <span id="total"></span>
+            
         </div>
       </div>
     </div>
-
-  
-      <!-- <div class="container">
-      </br></br></br></br>
-      <div class="col-md-2">
-
-        <input type="text" class="form-control" id="name" onkeyup="filterByName()">
-        <br>
-
-        <select id="perPage" class="form-control" onchange="callApi()">
-          <option value="2" selected>2</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-        </select>
-      </div>
-      <br>
-        <table class="table table-striped table-condensed table-bordered table-hover">
-            <thead><tr><th>Id</th><th>Name</th></tr></thead>
-            <tbody id="body">
-
-            </tbody>
-        </table>
-        Total Items: <span id="total"></span>
-  
-      </div> -->
 
       <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
