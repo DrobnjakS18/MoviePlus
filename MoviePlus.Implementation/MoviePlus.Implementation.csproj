@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MoviePlus.Application\MoviePlus.Application.csproj" />
     <ProjectReference Include="..\MoviePlus.DataAccess\MoviePlus.DataAccess.csproj" />
   </ItemGroup>

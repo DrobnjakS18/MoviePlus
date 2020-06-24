@@ -26,7 +26,7 @@ C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\bin\Debug\netcorea
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.csprojAssemblyReference.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.AssemblyInfoInputs.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.AssemblyInfo.cs
-C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.csproj.CoreCompileInputs.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.csproj.CopyComplete
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.pdb
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Implementation\obj\Debug\netcoreapp3.1\MoviePlus.Implementation.csproj.CoreCompileInputs.cache

@@ -8,4 +8,9 @@
     <ProjectReference Include="..\MoviePlus.Domain\MoviePlus.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Searches\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
 </Project>

@@ -111,8 +111,6 @@ C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Movie
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.csprojAssemblyReference.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.AssemblyInfoInputs.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.AssemblyInfo.cs
-C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.csproj.CoreCompileInputs.cache
-C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.RazorTargetAssemblyInfo.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.csproj.CopyComplete
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\staticwebassets\MoviePlus.API.StaticWebAssets.Manifest.cache
@@ -120,3 +118,16 @@ C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\stati
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.pdb
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.genruntimeconfig.cache
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\appsettings.Production.json
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\appsettings.Test.json
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.csproj.CoreCompileInputs.cache
+C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.MvcApplicationPartsAssemblyInfo.cache
