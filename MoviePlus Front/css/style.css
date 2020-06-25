@@ -23,3 +23,11 @@
 #total {
     font-size: 1.5rem;
 }
+
+.log-out:hover{
+    text-decoration: none;
+}
+
+.list-group-item:hover {
+    cursor: pointer;
+}
