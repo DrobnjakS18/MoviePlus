@@ -51,7 +51,6 @@ namespace MoviePlus.API.Core
                         statusCode = StatusCodes.Status422UnprocessableEntity;
                         response = new
                         {
-
                             message = "Validation failed",
                             errors = validation.Errors.Select(x => new {
                                 x.PropertyName,

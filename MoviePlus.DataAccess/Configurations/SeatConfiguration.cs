@@ -11,7 +11,6 @@ namespace MoviePlus.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Seat> builder)
         {
-            builder.Property(s => s.Row).IsRequired();
 
             builder.Property(s => s.Number).IsRequired();
 

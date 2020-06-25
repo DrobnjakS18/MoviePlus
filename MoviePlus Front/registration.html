@@ -25,15 +25,15 @@
                 <form>
                     <div class="form-group">
                         <label for="firstname">First Name</label>
-                          <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter First">                          
+                          <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter First">                        
                       </div>
                       <div class="form-group">
                         <label for="lastname">Last Name</label>
-                          <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Last">                          
+                          <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Last">                         
                       </div>
                       <div class="form-group">
                         <label for="email">Email</label>
-                          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email">                          
+                          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email">                           
                       </div>
                     <div class="form-group">
                       <label for="username">Username</label>
@@ -44,10 +44,11 @@
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <p>If you have an account go to <a href="/index.html">Login</a></p>
+                        <p>If you have an account <a href="/index.html">Login</a> here</p>
                     </div>
-                    <button type="submit" class="login-submit btn btn-primary">Register</button>
+                    <button type="submit" class="register-submit btn btn-primary">Register</button>
                 </form>
+                <div class="errors alert alert-danger"></div>
             </div>
         </div>
       </div>
@@ -55,6 +56,57 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script>
+      $('.register-submit').on('click', function(e) {
+        e.preventDefault();
+
+
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var email = $('#email').val();
+        var username = $('#username').val();
+        var password = $("#password").val();
+
+        var data = {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          username: username,
+          password: password
+        };
+
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:5101/api/register",
+            //Mora da se definise contentType kako bi server podrzao JSON 
+            contentType: 'application/json',
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function(data) {
+              // alert('You have successfully register. Please log in!');
+              // window.location.href = "/login.html";
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              if(status == 422) {
+                var errors = xhr.responseJSON.errors;
+
+                var temp = "<ul>";
+                for(let er of errors) {
+                  
+                  temp += `<li>${er.ErrorMessage}</li>`;
+                }
+                temp += "</ul>";
+
+                $('.errors').html(temp).show();
+              }
+
+              if(status == 201) {
+                alert('You have successfully register. Please log in!');
+                window.location.href = "/index.html";
+              }
+            }
+        });
+    });
 </script>
   </body>
 </html>

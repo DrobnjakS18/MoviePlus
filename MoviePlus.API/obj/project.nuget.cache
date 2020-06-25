@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "kftrI/uqejUWK2pb2TuStNEoGcm1f1dmR7fbdI94oxVrD7894vA/Axf0i3T/n5MNIMjGFzix8i3gEu9eycBwDg==",
+  "dgSpecHash": "ifptr2Snj0zpgcDO6l0S0uOCibosXRj9rVfO+5+UdGdlAdoeFOyJHMsqa/GAG+6RzQ4WgS226W0xttdIUBb+2w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.API\\MoviePlus.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Threedium\\.nuget\\packages\\fluentvalidation\\8.6.2\\fluentvalidation.8.6.2.nupkg.sha512",
+    "C:\\Users\\Threedium\\.nuget\\packages\\fluentvalidation.aspnetcore\\8.6.2\\fluentvalidation.aspnetcore.8.6.2.nupkg.sha512",
+    "C:\\Users\\Threedium\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\8.6.2\\fluentvalidation.dependencyinjectionextensions.8.6.2.nupkg.sha512",
     "C:\\Users\\Threedium\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.5\\microsoft.aspnetcore.authentication.jwtbearer.3.1.5.nupkg.sha512",
     "C:\\Users\\Threedium\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Threedium\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

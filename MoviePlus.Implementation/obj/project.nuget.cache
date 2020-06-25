@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "pGJa1ZIGFHEd6kdH7GkGTn/o+PJPxdZwYZqZrsOVuCd+jpTvcqm6SaxoC8CaWRDdsb2vHsrs8rhEE3XPr5S4yw==",
+  "dgSpecHash": "F8Xsrspkulr24QPQyr++O7ron4L75LQrEvtoVtcOwnSh0kH4w5LAL5dCQaYn0kpJxT2StgZCCyl11rWDtqR3AA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Threedium\\.nuget\\packages\\fluentvalidation\\8.6.2\\fluentvalidation.8.6.2.nupkg.sha512",
+    "C:\\Users\\Threedium\\.nuget\\packages\\fluentvalidation.aspnetcore\\8.6.2\\fluentvalidation.aspnetcore.8.6.2.nupkg.sha512",
+    "C:\\Users\\Threedium\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\8.6.2\\fluentvalidation.dependencyinjectionextensions.8.6.2.nupkg.sha512",
     "C:\\Users\\Threedium\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Threedium\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Threedium\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

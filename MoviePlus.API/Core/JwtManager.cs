@@ -65,7 +65,7 @@ namespace MoviePlus.API.Core
                 audience: "Any",
                 claims: claims,
                 notBefore: now,
-                expires: now.AddSeconds(120),//Vreme trajanja tokena u sekundama
+                expires: now.AddSeconds(3600),//Vreme trajanja tokena u sekundama
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

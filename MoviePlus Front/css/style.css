@@ -15,3 +15,11 @@
 .single-movie p{
     margin: 5px 0;
 }
+
+.errors {
+    display: none;
+}
+
+#total {
+    font-size: 1.5rem;
+}

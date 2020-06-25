@@ -149,21 +149,18 @@ namespace MoviePlus.DataAccess
                 new Seat
                 {
                     Id = 1,
-                    Row = 1,
                     Number = 1,
                     AuditoriumId = 1
                 },
                 new Seat
                 {
                     Id = 2,
-                    Row = 1,
                     Number = 2,
                     AuditoriumId = 1
                 },
                 new Seat
                 {
                     Id = 3,
-                    Row = 2,
                     Number = 1,
                     AuditoriumId = 2
                 },

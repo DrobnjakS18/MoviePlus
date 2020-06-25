@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,10 +18,12 @@ using MoviePlus.API.Core;
 using MoviePlus.Application;
 using MoviePlus.Application.Commands;
 using MoviePlus.Application.Email;
+using MoviePlus.Application.Queries;
 using MoviePlus.DataAccess;
 using MoviePlus.Implementation.Commands;
 using MoviePlus.Implementation.Email;
 using MoviePlus.Implementation.Logging;
+using MoviePlus.Implementation.Queries;
 using MoviePlus.Implementation.Validation;
 using Newtonsoft.Json;
 
@@ -46,7 +49,12 @@ namespace MoviePlus.API
 
             services.AddTransient<MoviePlusContext>();
             services.AddTransient<IUseCaseLogger, DatabaseUseCaseLogger>();
+            services.AddTransient<IGetMovieQuery, GetMovieQuery>();
+
+
+
             services.AddTransient<IRegisterUser, RegisterUser>();
+            services.AddTransient<RegisterUserValidator>();
             services.AddHttpContextAccessor();
             services.AddTransient<IApplicationUser>(x =>
             {
@@ -75,7 +83,6 @@ namespace MoviePlus.API
             services.AddTransient<IUseCaseLogger, DatabaseUseCaseLogger>();
             services.AddTransient<IEmailSender, SenderEmail>(x => new SenderEmail(settings.SenderEmail, settings.SenderEmailPassword));
 
-            services.AddTransient<RegisterUserValidator>();
             services.AddTransient<JwtManager>(x =>
             {
                 var context = x.GetService<MoviePlusContext>();

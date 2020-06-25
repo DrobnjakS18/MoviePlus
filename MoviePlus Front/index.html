@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registration</title>
+    <title>Login</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -32,7 +32,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <a href="/registration.html">Register</a>
+                        <p>If you dont have an account <a href="/registration.html">Register</a> here</p>
                     </div>
                     <button type="submit" class="login-submit btn btn-primary">Log in</button>
                 </form>
@@ -48,21 +48,32 @@
         var username = $('#username').val();
         var password = $("#password").val();
 
+        var data = {
+          username: username,
+          password: password
+        }
         $.ajax({
             method: "POST",
             url: "http://localhost:5101/api/login",
             //Mora da se definise contentType kako bi server podrzao JSON 
-            contentType: "application/json; charset=utf-8",
-            dataType: 'JSON',
-            data: {
-                username: username,
-                password: password
-            },
+            contentType: 'application/json',
+            dataType: "json",
+            data: JSON.stringify(data),
             success: function(data) {
-              console.log(data);
+              if(data) {
+              window.sessionStorage.accessToken = data.token;
+              alert('Welcome!');
+              window.location.href = "/dashboard.html";
+              }
             },
             error: function(xhr, status, error) {
-              alert(xhr.status);
+              var status = xhr.status;
+
+              if(status == 401) {
+                alert("User not found");
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
             }
         });
     });

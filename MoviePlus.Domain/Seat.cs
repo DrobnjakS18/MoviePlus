@@ -6,7 +6,6 @@ namespace MoviePlus.Domain
 {
     public class Seat : Entity
     {
-        public int Row { get; set; }
 
         public int Number { get; set; }
 
