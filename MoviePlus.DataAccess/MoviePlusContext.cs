@@ -12,25 +12,25 @@ namespace MoviePlus.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //var users = new List<User>
-            //{
-            //    new User {
-            //       Id = 1,
-            //       FirstName = "Admin",
-            //       LastName = "Admin",
-            //       Email = "admin@gmail.com",
-            //       Username = "adminAdmin",
-            //       Password = "pass123",
-            //    },
-            //    new User {
-            //       Id =2,
-            //       FirstName = "User",
-            //       LastName = "user",
-            //       Email = "user@gmail.com",
-            //       Username = "userUser",
-            //       Password = "pass123"
-            //    },
-            //};
+            var users = new List<User>
+            {
+                new User {
+                   Id = 1,
+                   FirstName = "Admin",
+                   LastName = "Admin",
+                   Email = "admin@gmail.com",
+                   Username = "adminAdmin",
+                   Password = "A12450CFF6FB7A97C975BFB7FCBB8F7E",
+                },
+                new User {
+                   Id =2,
+                   FirstName = "User",
+                   LastName = "user",
+                   Email = "user@gmail.com",
+                   Username = "userUser",
+                   Password = "6583122D691EAFAADB3583F0B0F122CA"
+                },
+            };
 
             //Proveriti kasnije UseCaseId
             var userUseCases = new List<UserUseCases>
@@ -207,7 +207,7 @@ namespace MoviePlus.DataAccess
             };
 
 
-            //modelBuilder.Entity<User>().HasData(users);
+            modelBuilder.Entity<User>().HasData(users);
             modelBuilder.Entity<UserUseCases>().HasData(userUseCases);
             modelBuilder.Entity<Movie>().HasData(movies);
             modelBuilder.Entity<Screening>().HasData(screening);

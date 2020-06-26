@@ -8,7 +8,7 @@ function callApi() {
 
   let perPage = $("#perPage").val();
   
-  let queryString = `ItemsPerPage=${perPage}`
+  let queryString = `ItemsPerPage=${perPage}&Date=2020-07-03`
 
   if(searchName != null) {
     queryString += `&Title=${searchName}`
@@ -21,7 +21,7 @@ function callApi() {
   },
   success: function(data) {
       $("#total").html(data.executor.totalCount);
-
+      $('.current').html(data.executor.currentPage);
       //Podesiti use case koji ce da bude samo za admina
       if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
         $('.admin-panel').css('display','block');
@@ -101,6 +101,7 @@ function pagination() {
       },
       success: function(data) {
           $("#total").html(data.executor.totalCount);
+          $('.current').html(data.executor.currentPage);
 
           if(jQuery.inArray(1, data.actor.allowedUseCase) !== -1) {
             $('.admin-panel').css('display','block');

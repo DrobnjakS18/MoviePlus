@@ -38,10 +38,43 @@ namespace MoviePlus.Implementation.Queries
                 query = query.Where(x => x.Description.ToLower().Contains(search.Description.ToLower()));
             }
 
-            //if (!string.IsNullOrEmpty(search.Duration.ToString()) || !string.IsNullOrWhiteSpace(search.Duration.ToString()))
-            //{
-            //    query = query.Where(x => x.Duration <= search.Duration);
-            //}
+
+            if(!string.IsNullOrEmpty(search.Date) || !string.IsNullOrWhiteSpace(search.Date))
+            {
+
+                //query = (IQueryable<Domain.Movie>)query.Select(x => x.Screenings.Select(s => s.ScreeningTime).Where(t => t.ToString("yyyy-MM-dd") == search.Date));
+
+                //var screening = _context.Screenings;
+                //var movieIds = screening.Select(t => t.MovieId);
+
+
+                //foreach (var ids in movieIds)
+                //{
+                //    var date = datum.ToString("yyyy-MM-dd");
+
+                //    if (date == search.Date)
+                //    {
+                //        //query = query.Where(x => x.Id == screening);
+                //    }
+                //}
+
+
+                //query = query.Where(x => x.Id == x.Screenings.Select(t => t.MovieId));
+
+
+                //foreach (var datum in screeningDate)
+                //{
+                //    var date = datum.ToString("yyyy-MM-dd");
+
+                //    if (date == search.Date) {
+                //        //query = query.Where(x => x.Id == screening);
+                //    }
+                //}
+            }
+
+
+
+            //query = query.Where(x => x.Screenings.Select(t => t.ScreeningTime));
 
             //Predstavlja broj podataka koje treba da preskoci
             var skipCount = search.ItemsPerPage * (search.CurrentPage - 1);
