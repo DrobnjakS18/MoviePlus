@@ -8,6 +8,7 @@ using MoviePlus.Implementation.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MoviePlus.Implementation.Commands
@@ -25,7 +26,7 @@ namespace MoviePlus.Implementation.Commands
             _email = email;
         }
 
-        public int Id => 1;
+        public int Id => 2;
 
         public string Name => "Register user";
 
@@ -33,13 +34,26 @@ namespace MoviePlus.Implementation.Commands
         {
             _validator.ValidateAndThrow(request);
 
+            var md5 = MD5.Create();
+
+            byte[] passwordBytes = Encoding.ASCII.GetBytes(request.Password);
+
+            byte[] hash = md5.ComputeHash(passwordBytes);
+
+            var stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+                stringBuilder.Append(hash[i].ToString("X2"));
+
+            var hashedPassword = stringBuilder.ToString();
+
             var user = new User
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
                 Username = request.Username,
-                Password = request.Password
+                Password = hashedPassword
             };
 
             _context.Users.Add(user);

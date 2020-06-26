@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,8 +28,21 @@ namespace MoviePlus.API.Core
 
         public string MakeToken(string username, string password)
         {
+            var md5 = MD5.Create();
+            
+                byte[] passwordBytes = Encoding.ASCII.GetBytes(password);
+
+                byte[] hash = md5.ComputeHash(passwordBytes);
+
+                var stringBuilder = new StringBuilder();
+
+                for (int i = 0; i < hash.Length; i++)
+                    stringBuilder.Append(hash[i].ToString("X2"));
+
+                var hashedPassword =  stringBuilder.ToString();
+
             //Trazimo da li postoji user sa prosledjenim email i sifrom
-            var user = _context.Users.Include(u => u.UserUseCases).FirstOrDefault(x => x.Username == username && x.Password == password);
+            var user = _context.Users.Include(u => u.UserUseCases).FirstOrDefault(x => x.Username == username && x.Password == hashedPassword);
 
             if (user == null)
             {

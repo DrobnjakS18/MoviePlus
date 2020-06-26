@@ -18,7 +18,7 @@ namespace MoviePlus.Implementation.Queries
             _context = context;
         }
 
-        public int Id => 2;
+        public int Id => 3;
 
         public string Name => "Get movies";
 
@@ -49,6 +49,7 @@ namespace MoviePlus.Implementation.Queries
             //Obavezno je na kraju dodati .ToList()
             var response = new PageResponse<MovieDto>
             {
+
                 TotalCount = query.Count(),
                 ItemsPerPage = search.ItemsPerPage,
                 CurrentPage = search.CurrentPage,

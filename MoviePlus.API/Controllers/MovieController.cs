@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MoviePlus.API.Core;
 using MoviePlus.Application;
 using MoviePlus.Application.Queries;
 using MoviePlus.Application.Searches;
@@ -35,7 +36,11 @@ namespace MoviePlus.API.Controllers
             [FromQuery] MovieSearch search,
             [FromServices] IGetMovieQuery query)
         {
-            return Ok(_executor.ExecuteQuery(query,search));
+            return Ok(new Response
+            {
+                Actor = _actor,
+                Executor = _executor.ExecuteQuery(query, search)
+            });
         }
 
         // GET api/movie/5

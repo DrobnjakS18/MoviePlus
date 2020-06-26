@@ -1,3 +1,5 @@
+
+
 var searchName = null;
 
 callApi();
@@ -18,11 +20,16 @@ function callApi() {
     'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
   },
   success: function(data) {
-      $("#total").html(data.totalCount);
+      $("#total").html(data.executor.totalCount);
+
+      //Podesiti use case koji ce da bude samo za admina
+      if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
+        $('.admin-panel').css('display','block');
+      };
 
       let html = "";
 
-      for(let item of data.items) {
+      for(let item of data.executor.items) {
         html += `<div class="col-12 my-3 d-flex rounded">
                 <div class="col-3">
                 <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
@@ -40,7 +47,7 @@ function callApi() {
 
       let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
 
-      for(var page = 1; page <= data.pageCount;page++){
+      for(var page = 1; page <= data.executor.pageCount;page++){
 
         pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
       }
@@ -55,7 +62,11 @@ function callApi() {
 
   },
   error: function(xhr, status, error) {
-    alert("Application is not currently working. Please come back later");
+    if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+      window.location.href = '/index.html';
+    } else {
+      alert("Application is not currently working. Please come back later");
+    }
   }
 });
 }
@@ -89,11 +100,15 @@ function pagination() {
         'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
       },
       success: function(data) {
-          $("#total").html(data.totalCount);
+          $("#total").html(data.executor.totalCount);
+
+          if(jQuery.inArray(1, data.actor.allowedUseCase) !== -1) {
+            $('.admin-panel').css('display','block');
+          };
     
           let html = "";
     
-          for(let item of data.items) {
+          for(let item of data.executor.items) {
             html += `<div class="col-12 my-3 d-flex rounded">
                     <div class="col-3">
                     <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
@@ -111,7 +126,7 @@ function pagination() {
     
           let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
     
-          for(var page = 1; page <= data.pageCount;page++){
+          for(var page = 1; page <= data.executor.pageCount;page++){
     
             pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
           }
@@ -126,10 +141,19 @@ function pagination() {
     
       },
       error: function(xhr, status, error) {
-        alert("Application is not currently working. Please come back later");
+        if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+          window.location.href = '/index.html';
+        } else {
+          alert("Application is not currently working. Please come back later");
+        }
       }
     });
 
   }); 
 }
 
+//Log out on click
+$('.log-out').on('click', function() {
+  window.sessionStorage.accessToken = null;
+  window.location.href = '/index.html';
+});

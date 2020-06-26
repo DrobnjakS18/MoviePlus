@@ -12,7 +12,7 @@ namespace MoviePlus.API.Core
 
         public string Identity => "Anonymus user";
 
-        public IEnumerable<int> AllowedUseCases => new List<int> { 1 };
+        public IEnumerable<int> AllowedUseCases => new List<int> { 2 };
     }
 }
 

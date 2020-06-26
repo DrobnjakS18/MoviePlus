@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoviePlus.DataAccess.Configurations;
-using MoviePlus.DataAccess.Seeders;
 using MoviePlus.Domain;
 using System;
 using System.Collections.Generic;
@@ -13,47 +12,47 @@ namespace MoviePlus.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var users = new List<User>
-            {
-                new User {
-                   Id = 1,
-                   FirstName = "Admin",
-                   LastName = "Admin",
-                   Email = "admin@gmail.com",
-                   Username = "adminAdmin",
-                   Password = "pass123",
-                },
-                new User {
-                   Id =2,
-                   FirstName = "User",
-                   LastName = "user",
-                   Email = "user@gmail.com",
-                   Username = "userUser",
-                   Password = "pass123"
-                },
-            };
+            //var users = new List<User>
+            //{
+            //    new User {
+            //       Id = 1,
+            //       FirstName = "Admin",
+            //       LastName = "Admin",
+            //       Email = "admin@gmail.com",
+            //       Username = "adminAdmin",
+            //       Password = "pass123",
+            //    },
+            //    new User {
+            //       Id =2,
+            //       FirstName = "User",
+            //       LastName = "user",
+            //       Email = "user@gmail.com",
+            //       Username = "userUser",
+            //       Password = "pass123"
+            //    },
+            //};
 
             //Proveriti kasnije UseCaseId
             var userUseCases = new List<UserUseCases>
             {
                 new UserUseCases {
                     Id = 1,
-                    UserId = 2,
+                    UserId = 1,
                     UseCaseId = 1,
                 },
                 new UserUseCases {
                     Id = 2,
-                    UserId = 2,
+                    UserId = 1,
                     UseCaseId = 2,
                 },
                 new UserUseCases {
                     Id = 3,
-                    UserId = 2,
+                    UserId = 1,
                     UseCaseId = 3,
                 },
                 new UserUseCases {
                     Id = 4,
-                    UserId = 2,
+                    UserId = 1,
                     UseCaseId = 4,
                 },
             };
@@ -208,7 +207,7 @@ namespace MoviePlus.DataAccess
             };
 
 
-            modelBuilder.Entity<User>().HasData(users);
+            //modelBuilder.Entity<User>().HasData(users);
             modelBuilder.Entity<UserUseCases>().HasData(userUseCases);
             modelBuilder.Entity<Movie>().HasData(movies);
             modelBuilder.Entity<Screening>().HasData(screening);
