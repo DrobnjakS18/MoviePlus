@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MoviePlus.Application.Commands
 {
-    public interface IRegisterUser : ICommend<RegisterDto>
+    public interface IRegisterUser : ICommend<UserDto>
     {
     }
 }

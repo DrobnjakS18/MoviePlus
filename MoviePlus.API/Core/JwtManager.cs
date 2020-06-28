@@ -52,7 +52,7 @@ namespace MoviePlus.API.Core
             var actor = new JwtActor
             {
                 id = user.Id,
-                Identity = user.Email,
+                Identity = user.Username,
                 AllowedUseCases = user.UserUseCases.Select(x => x.UseCaseId)
 
             };
@@ -79,7 +79,7 @@ namespace MoviePlus.API.Core
                 audience: "Any",
                 claims: claims,
                 notBefore: now,
-                expires: now.AddSeconds(3600),//Vreme trajanja tokena u sekundama
+                expires: now.AddHours(2),//Vreme trajanja tokena
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

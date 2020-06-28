@@ -1,10 +1,12 @@
-﻿using MoviePlus.Application.Dto;
+﻿using Microsoft.EntityFrameworkCore;
+using MoviePlus.Application.Dto;
 using MoviePlus.Application.Queries;
 using MoviePlus.Application.Searches;
 using MoviePlus.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 
 namespace MoviePlus.Implementation.Queries
@@ -27,6 +29,10 @@ namespace MoviePlus.Implementation.Queries
             //gradimo query
             var query = _context.Movies.AsQueryable();
 
+            //var splitDate = search.Date.Split('-');
+
+            //var searchDate = new DateTime(int.Parse(splitDate[0]) , int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
+
             //U slucaju da query nije prazan odradjujemo where
             if (!string.IsNullOrEmpty(search.Title) || !string.IsNullOrWhiteSpace(search.Title))
             {
@@ -38,43 +44,7 @@ namespace MoviePlus.Implementation.Queries
                 query = query.Where(x => x.Description.ToLower().Contains(search.Description.ToLower()));
             }
 
-
-            if(!string.IsNullOrEmpty(search.Date) || !string.IsNullOrWhiteSpace(search.Date))
-            {
-
-                //query = (IQueryable<Domain.Movie>)query.Select(x => x.Screenings.Select(s => s.ScreeningTime).Where(t => t.ToString("yyyy-MM-dd") == search.Date));
-
-                //var screening = _context.Screenings;
-                //var movieIds = screening.Select(t => t.MovieId);
-
-
-                //foreach (var ids in movieIds)
-                //{
-                //    var date = datum.ToString("yyyy-MM-dd");
-
-                //    if (date == search.Date)
-                //    {
-                //        //query = query.Where(x => x.Id == screening);
-                //    }
-                //}
-
-
-                //query = query.Where(x => x.Id == x.Screenings.Select(t => t.MovieId));
-
-
-                //foreach (var datum in screeningDate)
-                //{
-                //    var date = datum.ToString("yyyy-MM-dd");
-
-                //    if (date == search.Date) {
-                //        //query = query.Where(x => x.Id == screening);
-                //    }
-                //}
-            }
-
-
-
-            //query = query.Where(x => x.Screenings.Select(t => t.ScreeningTime));
+            //query = query.Where(x => x.Screenings.Select(a => a.ScreeningTime).Equals(searchDate));
 
             //Predstavlja broj podataka koje treba da preskoci
             var skipCount = search.ItemsPerPage * (search.CurrentPage - 1);
@@ -93,11 +63,17 @@ namespace MoviePlus.Implementation.Queries
                     Title = x.Title,
                     Description = x.Description,
                     Duration = x.Duration,
-
+                    ScreeningTime = x.Screenings.Where(s => s.MovieId == x.Id).Select(a => new ScreeningDto
+                    {
+                        Id = a.Id,
+                        Auditorium = a.Auditorium.Name,
+                        Seats = a.Auditorium.Seats.Where(se => se.AuditoriumId == a.Id).Count(),
+                        ScreeningTime = a.ScreeningTime
+                    }).ToList()
                 }).ToList()
             };
 
             return response;
         }
     }
-}
+} 

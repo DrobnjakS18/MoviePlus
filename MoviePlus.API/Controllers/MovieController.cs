@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MoviePlus.API.Core;
 using MoviePlus.Application;
+using MoviePlus.Application.Dto;
 using MoviePlus.Application.Queries;
 using MoviePlus.Application.Searches;
 using MoviePlus.DataAccess;
@@ -36,7 +37,7 @@ namespace MoviePlus.API.Controllers
             [FromQuery] MovieSearch search,
             [FromServices] IGetMovieQuery query)
         {
-            return Ok(new Response
+            return Ok(new Response<MovieDto>
             {
                 Actor = _actor,
                 Executor = _executor.ExecuteQuery(query, search)

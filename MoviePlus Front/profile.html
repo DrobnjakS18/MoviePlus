@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
       <div class="container">
-        <a class="navbar-brand text-white" href="#">MOVIE PLUS</a>
+        <a class="navbar-brand text-white" href="/dashboard.html">MOVIE PLUS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,7 +25,7 @@
             <a class="nav-link" href="/profile.html">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/insert.html">Admin Panel</a>
+            <a class="nav-link admin-panel" href="/admin.html">Admin Panel</a>
           </li>
         </ul>
       </div>
@@ -40,10 +40,10 @@
         </div>
       </div>
       <div class="row mt-2 pl-3 d-flex flex-column">
-        <p class="h5"><b>First Name:</b> First</p>
-        <p class="h5"><b>Last Name:</b> Last</p>
-        <p class="h5"><b>Username:</b> username</p>
-        <p class="h5"><b>Email:</b> Email</p>
+        <p class="h5"><b>First Name:</b> <span class="first"></span></p>
+        <p class="h5"><b>Last Name:</b> <span class="last"></span></p>
+        <p class="h5"><b>Username:</b> <span class="username"></span></p>
+        <p class="h5"><b>Email:</b> <span class="email"></span></p>
       </div>
       <div class="row mt-5">
         <div class="col-12">
@@ -70,6 +70,38 @@
 
       <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <!-- <script src="js/script.js"></script> -->
+    <script src="js/script.js"></script>
+    <script>
+
+      getUser();
+
+      function getUser() {
+        $.ajax({
+          url : `http://localhost:5101/api/user/${window.sessionStorage.actor}`,
+          headers : {
+            'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+          },
+          success: function(data) {
+
+              //Podesiti use case koji ce da bude samo za admina
+              if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
+                $('.admin-panel').css('display','block');
+              };
+
+            $('.first').html(data.executor.firstName);
+            $('.last').html(data.executor.lastName);
+            $('.username').html(data.executor.username);
+            $('.email').html(data.executor.email);
+          },
+          error: function(xhr, status, error) {
+            if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+              window.location.href = '/index.html';
+            } else {
+              alert("Application is not currently working. Please come back later");
+            }
+          }
+});
+      }
+    </script>
   </body>
 </html>

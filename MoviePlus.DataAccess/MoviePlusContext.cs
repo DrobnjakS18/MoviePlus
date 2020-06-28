@@ -55,6 +55,51 @@ namespace MoviePlus.DataAccess
                     UserId = 1,
                     UseCaseId = 4,
                 },
+                 new UserUseCases {
+                    Id = 5,
+                    UserId = 2,
+                    UseCaseId = 6,
+                },
+                new UserUseCases {
+                    Id = 6,
+                    UserId = 2,
+                    UseCaseId = 7,
+                },
+                new UserUseCases {
+                    Id = 7,
+                    UserId = 2,
+                    UseCaseId = 8,
+                },
+                new UserUseCases {
+                    Id = 8,
+                    UserId = 2,
+                    UseCaseId = 9,
+                },
+                 new UserUseCases {
+                    Id = 9,
+                    UserId = 2,
+                    UseCaseId = 10,
+                },
+                new UserUseCases {
+                    Id = 10,
+                    UserId = 2,
+                    UseCaseId = 11,
+                },
+                new UserUseCases {
+                    Id = 11,
+                    UserId = 2,
+                    UseCaseId = 12,
+                },
+                new UserUseCases {
+                    Id = 12,
+                    UserId = 2,
+                    UseCaseId = 13,
+                },
+                new UserUseCases {
+                    Id = 13,
+                    UserId = 2,
+                    UseCaseId = 3,
+                },
             };
 
             var movies = new List<Movie>
@@ -116,13 +161,19 @@ namespace MoviePlus.DataAccess
                 },
                 new Screening {
                     Id = 2,
-                    MovieId = 3,
+                    MovieId = 1,
+                    AuditoriumId = 2,
+                    ScreeningTime = new DateTime (2020, 7, 2, 15, 0, 0)
+                },
+                new Screening {
+                    Id = 3,
+                    MovieId = 2,
                     AuditoriumId = 2,
                     ScreeningTime = new DateTime (2020, 7, 2, 17, 0, 0)
                 },
                 new Screening {
-                    Id = 3,
-                    MovieId = 5,
+                    Id = 4,
+                    MovieId = 3,
                     AuditoriumId = 2,
                     ScreeningTime = new DateTime (2020, 7, 3, 20, 0, 0)
                 },
@@ -133,13 +184,11 @@ namespace MoviePlus.DataAccess
             {
                 new Auditorium {
                     Id = 1,
-                    Name = "Auditorium 1",
-                    SeatNumbers = 20
+                    Name = "Auditorium 1"
                 },
                 new Auditorium {
                     Id = 2,
-                    Name = "Auditorium 2",
-                    SeatNumbers = 30
+                    Name = "Auditorium 2"
                 },
             };
 
@@ -221,6 +270,8 @@ namespace MoviePlus.DataAccess
             modelBuilder.ApplyConfiguration(new ScreeningConfiguration());
             modelBuilder.ApplyConfiguration(new SeatConfiguration());
             modelBuilder.ApplyConfiguration(new ReservationConfiguration());
+
+            modelBuilder.Entity<Screening>().HasIndex(p => new {  p.AuditoriumId, p.ScreeningTime }).IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Plus</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+      <div class="container">
+        <a class="navbar-brand text-white" href="/dashboard.html">MOVIE PLUS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/dashboard.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin.html">Admin Panel</a>
+              </li>
+        </ul>
+      </div>
+      <a href="#" class="log-out text-white">Log out</a>
+      </div>
+    </nav>
+
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="text-center">Admin panel</h2>
+        </div>
+      </div>
+      <div class="row mt-5 pl-3 d-flex">
+        <button class="admin-users btn btn-secondary mr-3 px-5">Users</button>
+        <button class="admin-movies btn btn-secondary mr-3 px-5">Movies</button>
+        <button class="admin-logs btn btn-secondary px-5">Logs</button>
+      </div>
+      <div class="row mt-3 log-search-bar">
+        <div class="col d-flex justify-content-between">
+          <span>Search Actors:<input type="search" name='actor-search' class="actor-search ml-2" onkeyup="filterActors()"/></span> 
+          <span>Search Use Case: <input type="search" name='case-search' class="case-search" onkeyup="filterCase()"/></span>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="api-display"></div>
+          <p class="mx-auto text-center admin-current">Current Page: <span class="admin-current-page"></span></p>
+            <div class="pages"></div>
+          <strong class="h4">Total Items:</strong> <span id="total"></span>
+        </div>
+      </div>
+    </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script>
+
+      if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
+        window.sessionStorage.accessToken = null;
+        window.location.href = '/index.html'
+      };
+      var searchActor= null;
+      function filterActors(){
+        var searchA = $('.actor-search').val();
+
+        searchActor = searchA;
+
+        getLogs();
+      }
+
+      var searchCase = null;
+      function filterCase(){
+        var searchC = $('.case-search').val();
+
+        searchCase = searchC;
+
+        getLogs();
+      }
+
+
+      getUsers();
+      // 
+      // USERS
+      //
+      $('.admin-users').on('click', function(e) {
+        e.preventDefault;
+        getUsers();
+      });
+
+      function getUsers(){
+        $.ajax({
+          url : `http://localhost:5101/api/user`,
+          headers : {
+            'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+          },
+          success: function(data) {
+              $("#total").html(data.executor.totalCount);
+              $('.admin-current-page').html(data.executor.currentPage);
+              $('.log-search-bar').hide();
+
+              let html = `<table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.firstName}</td>
+                        <td>${item.lastName}</td>
+                        <td>${item.email}</td>
+                        <td>${item.username}</td>
+                        <td><i class="fa fa-check text-success" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
+                      </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+
+             let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+
+              for(var page = 1; page <= data.executor.pageCount;page++){
+
+                pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+              }
+
+              pages += `</ul>`;
+
+
+              $(".api-display").html(html);
+              $('.pages').html(pages);
+
+            paginationLUser();
+          },
+          error: function(xhr, status, error) {
+            if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+              window.location.href = '/index.html';
+            } else {
+              alert("Application is not currently working. Please come back later");
+            }
+          }
+        });
+      }
+
+      function paginationLUser() {
+
+        $('.page').on('click', function() {
+          let clickedPage = $(this).data('page');
+
+          let pagPerPage = $("#perPage").val();
+
+          let pagQueryString = `ItemsPerPage=10`
+
+          pagQueryString += `&CurrentPage=${clickedPage}`;
+
+          $.ajax({
+            url : `http://localhost:5101/api/user?${pagQueryString}`,
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            success: function(data) {
+                $("#total").html(data.executor.totalCount);
+                $('.admin-current-page').html(data.executor.currentPage);
+          
+                let html = `          <table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.firstName}</td>
+                        <td>${item.lastName}</td>
+                        <td>${item.email}</td>
+                        <td>${item.username}</td>
+                        <td><i class="fa fa-check text-success" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
+                      </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+          
+                let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+          
+                for(var page = 1; page <= data.executor.pageCount;page++){
+          
+                  pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+                }
+          
+                pages += `</ul>`;
+          
+                $(".api-display").html(html);
+                $('.pages').html(pages);
+          
+                paginationLUser();
+          
+            },
+            error: function(xhr, status, error) {
+              if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+                window.location.href = '/index.html';
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
+            }
+          });
+
+        }); 
+        }
+
+
+
+
+      // 
+      // MOVIES
+      //
+      $('.admin-movies').on('click', function(e) {
+        e.preventDefault;
+        getMovies();
+      });
+
+      function getMovies() {
+        $.ajax({
+          url : `http://localhost:5101/api/movie`,
+          headers : {
+            'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+          },
+          success: function(data) {
+            $("#total").html(data.executor.totalCount);
+            $('.admin-current-page').html(data.executor.currentPage);
+            $('.log-search-bar').hide();
+
+              let html = `<table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.title}</td>
+                        <td>${item.description}</td>
+                        <td>${item.duration} min</td>
+                        <td><i class="fa fa-check text-success" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
+                      </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+
+             let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+          
+          for(var page = 1; page <= data.executor.pageCount;page++){
+    
+            pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+          }
+    
+          pages += `</ul>`;
+
+            $(".api-display").html(html);
+            $('.pages').html(pages);
+
+            paginationMovies();
+          },
+          error: function(xhr, status, error) {
+            if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+              window.location.href = '/index.html';
+            } else {
+              alert("Application is not currently working. Please come back later");
+            }
+          }
+        });
+      }
+
+      function paginationMovies() {
+
+      $('.page').on('click', function() {
+        let clickedPage = $(this).data('page');
+
+        let pagPerPage = $("#perPage").val();
+
+        let pagQueryString = `ItemsPerPage=10`
+
+        pagQueryString += `&CurrentPage=${clickedPage}`;
+
+        $.ajax({
+          url : `http://localhost:5101/api/movie?${pagQueryString}`,
+          headers : {
+            'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+          },
+          success: function(data) {
+              $("#total").html(data.executor.totalCount);
+              $('.admin-current-page').html(data.executor.currentPage);
+        
+              let html = `<table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.title}</td>
+                        <td>${item.description}</td>
+                        <td>${item.duration} min</td>
+                        <td><i class="fa fa-check text-success" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
+                      </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+        
+              let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+        
+              for(var page = 1; page <= data.executor.pageCount;page++){
+        
+                pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+              }
+        
+              pages += `</ul>`;
+        
+              $(".api-display").html(html);
+              $('.pages').html(pages);
+        
+              paginationLUser();
+        
+          },
+          error: function(xhr, status, error) {
+            if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+              window.location.href = '/index.html';
+            } else {
+              alert("Application is not currently working. Please come back later");
+            }
+          }
+        });
+
+      }); 
+      }
+
+
+      // 
+      // LOGS
+      //
+      $('.admin-logs').on('click', function(e) {
+        e.preventDefault;
+        getLogs();
+      });
+
+      function getLogs() {
+          let pagQueryString = `ItemsPerPage=10`;
+
+          if(searchActor != null) {
+            pagQueryString += `&Actor=${searchActor}`;
+          }
+
+          if(searchCase != null) {
+            pagQueryString += `&UseCase=${searchCase}`;
+          }
+        $.ajax({
+
+          url : `http://localhost:5101/api/log?${pagQueryString}`,
+          headers : {
+            'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+          },
+          success: function(data) {
+            console.log(data);
+            $("#total").html(data.executor.totalCount);
+            $('.admin-current-page').html(data.executor.currentPage);
+            $('.log-search-bar').show();
+
+              let html = `<table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Actor</th>
+                <th scope="col">Usecase</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.actor}</td>
+                        <td>${item.useCase}</td>
+                        <td>${item.date}</td>
+                      </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+
+             let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+
+              for(var page = 1; page <= data.executor.pageCount;page++){
+
+                pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+              }
+
+              pages += `</ul>`;
+
+
+              $(".api-display").html(html);
+              $('.pages').html(pages).show();
+
+              paginationLog();
+          },
+          error: function(xhr, status, error) {
+            if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+              window.location.href = '/index.html';
+            } else {
+              alert("Application is not currently working. Please come back later");
+            }
+          }
+        });
+      }
+
+
+      function paginationLog() {
+        //Kad se klikne na dugme da se odradi upit sa paginacijom
+        $('.page').on('click', function() {
+          let clickedPage = $(this).data('page');
+
+          let pagPerPage = $("#perPage").val();
+
+          let pagQueryString = `ItemsPerPage=10`
+
+          pagQueryString += `&CurrentPage=${clickedPage}`;
+
+          if(searchActor != null) {
+            pagQueryString += `&Actor=${searchActor}`
+          }
+
+          if(searchCase != null) {
+            pagQueryString += `&UseCase=${searchCase}`;
+          }
+
+          $.ajax({
+            url : `http://localhost:5101/api/log?${pagQueryString}`,
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            success: function(data) {
+                $("#total").html(data.executor.totalCount);
+                $('.admin-current-page').html(data.executor.currentPage);
+          
+                let html = `<table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Actor</th>
+                <th scope="col">Usecase</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.actor}</td>
+                        <td>${item.useCase}</td>
+                        <td>${item.date}</td>
+                      </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+          
+                let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+          
+                for(var page = 1; page <= data.executor.pageCount;page++){
+          
+                  pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+                }
+          
+                pages += `</ul>`;
+          
+                $(".api-display").html(html);
+                $('.pages').html(pages).show();
+          
+          
+                paginationLog();
+          
+            },
+            error: function(xhr, status, error) {
+              if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+                window.location.href = '/index.html';
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
+            }
+          });
+
+        }); 
+      }
+
+    </script>
+  </body>
+</html>

@@ -36,3 +36,15 @@
 .admin-panel {
     display: none;
 }
+
+table .fa:hover {
+    cursor: pointer;
+}
+
+.log-alert {
+    display: none;
+}
+
+.log-search-bar {
+    display: none;
+}

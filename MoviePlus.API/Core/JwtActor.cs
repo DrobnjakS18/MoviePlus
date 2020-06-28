@@ -12,6 +12,6 @@ namespace MoviePlus.API.Core
 
         public string Identity { get; set; }
 
-        public IEnumerable<int> AllowedUseCases { get; set; } = new List<int> { 2, 3, 4, 5 };//UseCase komande koje su dozvoljenje za ulogovanog korisnika
+        public IEnumerable<int> AllowedUseCases { get; set; } 
     }
 }

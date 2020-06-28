@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movie Plus</title>
+    <title>Movie Plus Cinema</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
       <div class="container">
-        <a class="navbar-brand text-white" href="#">MOVIE PLUS</a>
+        <a class="navbar-brand text-white" href="/dashboard.html">MOVIE PLUS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,7 +25,7 @@
             <a class="nav-link" href="/profile.html">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link admin-panel" href="/insert.html">Admin Panel</a>
+            <a class="nav-link admin-panel" href="/admin.html">Admin Panel</a>
           </li>
         </ul>
       </div>
@@ -53,18 +53,18 @@
             <option value="10">10</option>
           </select>
         </div>
-        <div class="col-2">
+        <!-- <div class="col-2">
           <span>Date:</span>
           <input type="date" id="date" name="date">
         </div>
         <div class="col-2">
           <span>Time:</span>
-          <select id="perPage" class="form-control">
-            <option value="2" selected>15:00</option>
-            <option value="5">17:00</option>
-            <option value="10">20:00</option>
+          <select id="screeningTime" class="form-control">
+            <option value="15" selected>15:00</option>
+            <option value="17">17:00</option>
+            <option value="20">20:00</option>
           </select>
-        </div>
+        </div> -->
       </div>
 
       <div class="row">
@@ -73,12 +73,10 @@
             <div class="movies"></div>
             <p class="mx-auto">Current Page: <span class="current"></span></p>
            </div>
-
             <div class="col-12 ">
               <div class="pages"></div>
             </div>
           
-           <strong class="h4">Total Items:</strong> <span id="total"></span>
         </div>
       </div>
     </div>
@@ -86,5 +84,213 @@
       <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
+    <script> 
+
+var currentTime = new Date();    
+var currentDate = currentTime.getDate();
+var currentYear = currentTime.getFullYear();
+var currentMounth = currentTime.getMonth()+1;
+var selectedTime = "15";
+
+$('#screeningTime').on('change', function() {
+
+  let time = $(this).val();
+
+  selectedTime = time;
+
+  callApi();
+});
+
+function leadingZero(time) {
+  var modified = (time< 10) ? "0"+ time : time;
+  return modified;
+}
+
+var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${currentDate}`;
+
+var selectedDate = null;
+$('#date').on('change', function() {
+  
+  let date = $(this).val();
+
+  selectedDate = date + ' ' + selectedTime;
+
+  callApi();
+});
+
+var searchName = null;
+
+
+function takeDate(date){
+    let splitDate = date.split("T");
+
+    return splitDate[0] + " " +splitDate[1];
+  }
+
+
+callApi();
+
+function callApi() {
+
+  let perPage = $("#perPage").val();
+  // let selectedTime = $("#screeningTime").val();
+
+  let queryString = `ItemsPerPage=${perPage}`;
+  // queryString = `&Time=${selectedTime}`;
+
+  if(searchName != null) {
+    queryString += `&Title=${searchName}`;
+  }
+
+  // if(selectedDate != null) {
+  //   queryString += `&Date=${selectedDate}`;
+  // } else {
+  //   queryString += `&Date=${currentJoinDate}`;
+  // }
+
+  $.ajax({
+  url : `http://localhost:5101/api/movie?${queryString}`,
+  headers : {
+    'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+  },
+  success: function(data) {
+    window.sessionStorage.actor = data.actor.id;
+      $("#total").html(data.executor.totalCount);
+      $('.current').html(data.executor.currentPage);
+      //Podesiti use case koji ce da bude samo za admina
+      if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
+        $('.admin-panel').css('display','block');
+      };
+
+      let html = "";
+
+      for(let item of data.executor.items) {
+        html += `<div class="col-12 my-3 d-flex rounded">
+                <div class="col-3">
+                <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
+                </div>
+                <div class="col-9 my-auto single-movie">
+                  <h5><b>Title</b>: ${item.title}</h5>
+                  <p><b>Descripiton:</b> ${item.description}</p>
+                  <p><b>Duration</b>: ${item.duration}</p>`;
+                 
+                  for(let datum of item.screeningTime) {
+                    html +=`<p><b>Auditorium</b>: ${datum.auditorium}</p>
+                            <p><b>Date</b>: ${takeDate(datum.screeningTime)}</p>
+                            <p><b>Number of available seats</b>: ${datum.seats}</p>`;
+                  }
+                  html += `<button class="btn btn-primary">Buy Ticket</button>
+                </div>
+              </div>`;
+      }
+
+      let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+
+      for(var page = 1; page <= data.executor.pageCount;page++){
+
+        pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+      }
+
+      pages += `</ul>`;
+
+      $(".movies").html(html);
+      $('.pages').html(pages);
+
+
+      pagination();
+
+  },
+  error: function(xhr, status, error) {
+    if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+      window.location.href = '/index.html';
+    } else {
+      alert("Application is not currently working. Please come back later");
+    }
+  }
+});
+}
+
+function filterByName() {
+    var name = $("#name").val()
+
+    searchName = name;
+
+    callApi();
+}
+
+function pagination() {
+
+  $('.page').on('click', function() {
+    let clickedPage = $(this).data('page');
+
+    let pagPerPage = $("#perPage").val();
+  
+    let pagQueryString = `ItemsPerPage=${pagPerPage}`
+  
+    if(searchName != null) {
+      pagQueryString += `&Title=${searchName}`
+    }
+  
+    pagQueryString += `&CurrentPage=${clickedPage}`;
+
+    $.ajax({
+      url : `http://localhost:5101/api/movie?${pagQueryString}`,
+      headers : {
+        'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+      },
+      success: function(data) {
+          $("#total").html(data.executor.totalCount);
+          $('.current').html(data.executor.currentPage);
+
+          if(jQuery.inArray(1, data.actor.allowedUseCase) !== -1) {
+            $('.admin-panel').css('display','block');
+          };
+    
+          let html = "";
+    
+          for(let item of data.executor.items) {
+            html += `<div class="col-12 my-3 d-flex rounded">
+                    <div class="col-3">
+                    <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
+                    </div>
+                    <div class="col-9 my-auto single-movie">
+                      <h5><b>Title</b>: ${item.title}</h5>
+                      <p><b>Descripiton:</b> ${item.description}</p>
+                      <p><b>Duration</b>: ${item.duration}</p>
+                      <p><b>Auditorium</b>: 1</p>
+                      <p><b>Number of available tickets</b>: 5</p>
+                      <button class="btn btn-primary">Buy Ticket</button>
+                    </div>
+                  </div>`;
+          }
+    
+          let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+    
+          for(var page = 1; page <= data.executor.pageCount;page++){
+    
+            pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+          }
+    
+          pages += `</ul>`;
+    
+          $(".movies").html(html);
+          $('.pages').html(pages);
+    
+    
+          pagination();
+    
+      },
+      error: function(xhr, status, error) {
+        if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
+          window.location.href = '/index.html';
+        } else {
+          alert("Application is not currently working. Please come back later");
+        }
+      }
+    });
+
+  }); 
+}
+    </script>
   </body>
 </html>

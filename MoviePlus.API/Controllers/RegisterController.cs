@@ -24,7 +24,7 @@ namespace MoviePlus.API.Controllers
         // POST api/register
         [HttpPost]
         public IActionResult Post(
-            [FromBody] RegisterDto request, 
+            [FromBody] UserDto request, 
             [FromServices] IRegisterUser command)
         {
             _executor.ExecuteCommand(command, request);

@@ -22,3 +22,15 @@ C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.csproj.CopyComplete
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.pdb
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\bin\Debug\netcoreapp3.1\MoviePlus.Application.deps.json
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\bin\Debug\netcoreapp3.1\MoviePlus.Application.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\bin\Debug\netcoreapp3.1\MoviePlus.Application.pdb
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\bin\Debug\netcoreapp3.1\MoviePlus.Domain.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\bin\Debug\netcoreapp3.1\MoviePlus.Domain.pdb
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.csprojAssemblyReference.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.csproj.CoreCompileInputs.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.AssemblyInfoInputs.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.AssemblyInfo.cs
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.csproj.CopyComplete
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Application\obj\Debug\netcoreapp3.1\MoviePlus.Application.pdb

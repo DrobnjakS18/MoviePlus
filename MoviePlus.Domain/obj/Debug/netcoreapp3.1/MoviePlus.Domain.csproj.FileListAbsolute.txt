@@ -16,3 +16,12 @@ C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\Mo
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.csproj.CoreCompileInputs.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.pdb
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\bin\Debug\netcoreapp3.1\MoviePlus.Domain.deps.json
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\bin\Debug\netcoreapp3.1\MoviePlus.Domain.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\bin\Debug\netcoreapp3.1\MoviePlus.Domain.pdb
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.csprojAssemblyReference.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.csproj.CoreCompileInputs.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.AssemblyInfoInputs.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.AssemblyInfo.cs
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.Domain\obj\Debug\netcoreapp3.1\MoviePlus.Domain.pdb

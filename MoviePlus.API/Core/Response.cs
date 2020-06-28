@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MoviePlus.API.Core
 {
-    public class Response
+    public class Response<T> where T : class
     {
 
         public IApplicationUser Actor { get; set; }
 
-        public PageResponse<MovieDto> Executor { get; set; }
+        public PageResponse<T> Executor { get; set; }
     }
 }

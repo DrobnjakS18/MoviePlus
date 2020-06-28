@@ -9,7 +9,7 @@ using System.Text;
 
 namespace MoviePlus.Implementation.Validation
 {
-    public class RegisterUserValidator : AbstractValidator<RegisterDto>
+    public class RegisterUserValidator : AbstractValidator<UserDto>
     {
         public RegisterUserValidator(MoviePlusContext context)
         {

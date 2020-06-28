@@ -13,5 +13,7 @@ namespace MoviePlus.Domain
         public int Duration { get; set; }
 
         public ICollection<Screening> Screenings { get; set; }
+
+        //public ICollection<Auditorium> Auditoriums { get; set; }
     }
 }

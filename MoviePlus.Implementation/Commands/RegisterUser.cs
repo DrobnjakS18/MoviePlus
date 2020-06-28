@@ -30,7 +30,7 @@ namespace MoviePlus.Implementation.Commands
 
         public string Name => "Register user";
 
-        public void Execute(RegisterDto request)
+        public void Execute(UserDto request)
         {
             _validator.ValidateAndThrow(request);
 

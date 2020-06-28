@@ -10,6 +10,7 @@ namespace MoviePlus.Application.Searches
 
         public string Description { get; set; }
 
+        public string Time { get; set; }
         public string Date { get; set; }
         public int Duration { get; set; }
     }

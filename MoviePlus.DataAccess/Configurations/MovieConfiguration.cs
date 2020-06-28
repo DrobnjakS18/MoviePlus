@@ -20,7 +20,6 @@ namespace MoviePlus.DataAccess.Configurations
             builder.Property(m => m.Duration).IsRequired();
 
             builder.HasMany(m => m.Screenings).WithOne(s => s.Movie).HasForeignKey(s => s.MovieId).OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 }

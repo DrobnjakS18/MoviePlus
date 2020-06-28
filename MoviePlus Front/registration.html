@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container">
-          <a class="navbar-brand text-white mx-auto" href="#">MOVIE PLUS</a>
+          <a class="navbar-brand text-white mx-auto" href="/dashboard.html">MOVIE PLUS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,7 +76,7 @@
 
         $.ajax({
             method: "POST",
-            url: "http://localhost:5101/api/register",
+            url: "http://localhost:5101/api/user",
             //Mora da se definise contentType kako bi server podrzao JSON 
             contentType: 'application/json',
             dataType: "json",
