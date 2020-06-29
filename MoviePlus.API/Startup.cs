@@ -55,10 +55,12 @@ namespace MoviePlus.API
             services.AddTransient<IGetUserQuery, GetUserQuery>();
 
             services.AddTransient<IMovieInsert, MovieInsert>();
+            services.AddTransient<IDeleteMovie, DeleteMovie>();
 
             services.AddTransient<IRegisterUser, RegisterUser>();
             services.AddTransient<RegisterUserValidator>();
             services.AddTransient<InsertMovieValidator>();
+            services.AddTransient<InsertScreeningValidator>();
             services.AddHttpContextAccessor();
             services.AddTransient<IApplicationUser>(x =>
             {

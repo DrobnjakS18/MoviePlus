@@ -285,6 +285,14 @@ namespace MoviePlus.DataAccess
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Reservation>().ToTable("Reservations");
 
+            modelBuilder.Entity<User>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Movie>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<UserUseCases>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Screening>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Auditorium>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Reservation>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Seat>().HasQueryFilter(x => !x.IsDeleted);
+
             modelBuilder.Entity<Screening>().HasIndex(p => new {  p.AuditoriumId, p.ScreeningTime }).IsUnique();
         }
 

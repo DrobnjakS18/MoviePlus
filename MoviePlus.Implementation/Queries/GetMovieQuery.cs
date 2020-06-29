@@ -67,7 +67,7 @@ namespace MoviePlus.Implementation.Queries
                     ScreeningTime = x.Screenings.Where(s => s.MovieId == x.Id).Select(a => new ScreeningDto
                     {
                         Id = a.Id,
-                        Auditorium = a.Auditorium.Name,
+                        AuditoriumName = a.Auditorium.Name,
                         Seats = a.Auditorium.Seats.Where(se => se.AuditoriumId == a.Id).Count(),
                         ScreeningTime = a.ScreeningTime
                     }).ToList()

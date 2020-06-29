@@ -7,6 +7,7 @@ using MoviePlus.Domain;
 using MoviePlus.Implementation.Validation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MoviePlus.Implementation.Commands
@@ -29,15 +30,16 @@ namespace MoviePlus.Implementation.Commands
 
         public void Execute(MovieDto request)
         {
+            var auditorumId = int.Parse(request.Auditorium);
+
             var splitDate = request.Date.Split('-');
 
             var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(request.Time), 0, 0);
 
-            if (searchDate != null)
-            {
-                _validator.ValidateAndThrow(request);
+             _validator.ValidateAndThrow(request);
 
-                var movie = new Movie
+
+            var movie = new Movie
                 {
 
                     Title = request.Title,
@@ -46,12 +48,32 @@ namespace MoviePlus.Implementation.Commands
                     Image = request.Image
                 };
 
-                _context.Add(movie);
-                _context.SaveChanges();
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _context.Movies.Add(movie);
+                    _context.SaveChanges();
+
+                    var lastMovie = _context.Movies.Max(item => item.Id);
+
+                    var screening = new Screening
+                    {
+                        MovieId = lastMovie,
+                        AuditoriumId = auditorumId,
+                        ScreeningTime = searchDate
+                    };
+
+                    _context.Screenings.Add(screening);
+                    _context.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
             }
-
-
-
         }
     }
 }

@@ -38,6 +38,11 @@ namespace MoviePlus.Implementation.Validation
 
             RuleFor(x => x.Time)
                 .NotEmpty();
+
+            RuleFor(x => x.Auditorium)
+               .NotEmpty();
+
+         
         }
     }
 }

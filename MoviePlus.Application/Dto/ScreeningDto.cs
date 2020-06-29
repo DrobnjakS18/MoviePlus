@@ -11,7 +11,7 @@ namespace MoviePlus.Application.Dto
 
         public int MovieId { get; set; }
 
-        public string Auditorium { get; set; }
+        public string AuditoriumName { get; set; }
 
         public int Seats { get; set; }
 

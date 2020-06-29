@@ -55,21 +55,23 @@ namespace MoviePlus.API.Controllers
 
         // POST api/movie
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] MovieDto request,
             [FromServices] IMovieInsert command)
         {
 
-            if (!string.IsNullOrEmpty(request.Date) || !string.IsNullOrWhiteSpace(request.Date))
+            if (request.Date == "") 
             {
-                return StatusCode(400, new
-                {
-                    message = "Date is required"
-                });
+                return StatusCode(400);
             }
             else {
 
                 var splitDate = request.Date.Split('-');
                 var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(request.Time), 0, 0);
+
+                if (searchDate <= DateTime.Now) {
+                    return StatusCode(409);
+                }
 
                 _executor.ExecuteCommand(command, request);
             }
@@ -87,8 +89,14 @@ namespace MoviePlus.API.Controllers
 
         // DELETE api/movie/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Authorize]
+        public IActionResult Delete(int id, 
+            [FromServices] IDeleteMovie command)
         {
+
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
         }
     }
 

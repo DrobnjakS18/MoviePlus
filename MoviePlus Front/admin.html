@@ -283,8 +283,8 @@
                         <td>${item.title}</td>
                         <td>${item.description}</td>
                         <td>${item.duration} min</td>
-                        <td><i class="fa fa-check text-success" aria-hidden="true"></i></td>
-                        <td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
+                        <td><i class="update-movie fa fa-check text-success" data-id="${item.id}" aria-hidden="true"></i></td>
+                        <td><i class="delete-movie fa fa-trash text-danger" data-id="${item.id}" aria-hidden="true"></i></td>
                       </tr>`;
               }
 
@@ -302,7 +302,35 @@
 
             $(".api-display").html(html);
             $('.pages').html(pages);
+            
+            
+          $('.delete-movie').on('click', function() {
 
+            var movieId = $(this).data("id");
+
+            $.ajax({
+            type: "DELETE", // <- Change here
+            contentType: "application/json",
+            url: `http://localhost:5101/api/movie/${movieId}`,
+            headers : {
+            'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            success: function(data) {
+              alert("Movie succesfully deleted");
+              location.reload();
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              if(status == 401) {
+                alert("No token");
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
+            }
+        });
+            });
+
+            
             paginationMovies();
           },
           error: function(xhr, status, error) {
@@ -355,8 +383,8 @@
                         <td>${item.title}</td>
                         <td>${item.description}</td>
                         <td>${item.duration} min</td>
-                        <td><i class="fa fa-check text-success" aria-hidden="true"></i></td>
-                        <td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
+                        <td><i class="update-movie fa fa-check text-success" data-id=${item.id} aria-hidden="true"></i></td>
+                        <td><i class="delete-movie fa fa-trash text-danger" data-id=${item.id}aria-hidden="true"></i></td>
                       </tr>`;
               }
 
@@ -374,6 +402,32 @@
         
               $(".api-display").html(html);
               $('.pages').html(pages);
+
+              $('.delete-movie').on('click', function() {
+
+                var movieId = $(this).data("id");
+
+                    $.ajax({
+                    type: "DELETE", // <- Change here
+                    contentType: "application/json",
+                    url: `http://localhost:5101/api/movie/${movieId}`,
+                    headers : {
+                    'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+                    },
+                    success: function(data) {
+                      alert("Movie succesfully deleted");
+                      location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                      var status = xhr.status;
+                      if(status == 401) {
+                        alert("No token");
+                      } else {
+                        alert("Application is not currently working. Please come back later");
+                      }
+                    }
+                    });
+                });
         
               paginationLUser();
         
@@ -389,6 +443,10 @@
 
       }); 
       }
+
+
+
+
 
 
       // 
