@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MoviePlus.API.Core;
 using MoviePlus.Application;
+using MoviePlus.Application.Commands;
 using MoviePlus.Application.Dto;
 using MoviePlus.Application.Queries;
 using MoviePlus.Application.Searches;
@@ -53,8 +55,28 @@ namespace MoviePlus.API.Controllers
 
         // POST api/movie
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] MovieDto request,
+            [FromServices] IMovieInsert command)
         {
+
+            if (!string.IsNullOrEmpty(request.Date) || !string.IsNullOrWhiteSpace(request.Date))
+            {
+                return StatusCode(400, new
+                {
+                    message = "Date is required"
+                });
+            }
+            else {
+
+                var splitDate = request.Date.Split('-');
+                var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(request.Time), 0, 0);
+
+                _executor.ExecuteCommand(command, request);
+            }
+
+
+
+            return StatusCode(201);
         }
 
         // PUT api/movie/5
@@ -69,4 +91,5 @@ namespace MoviePlus.API.Controllers
         {
         }
     }
+
 }

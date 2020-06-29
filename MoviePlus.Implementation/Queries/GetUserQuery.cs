@@ -27,10 +27,10 @@ namespace MoviePlus.Implementation.Queries
         {
             var user = _context.Users.Find(search);
 
+            //var Id = user. Reservation.Screening.Movie.Id;
+
             if (user != null)
             {
-
-                //var reservations = user.Reservations.Where(r => r.UserId == user.Id)
 
                 return new UserDto
                 {
@@ -40,7 +40,13 @@ namespace MoviePlus.Implementation.Queries
                     LastName = user.LastName,
                     Email = user.Email,
                     Username = user.Username,
-                };
+                    Ticket = new MovieDto {
+                        Id = user.Reservation.Screening.Movie.Id,
+                        Title = user.Reservation.Screening.Movie.Title,
+                        Description = user.Reservation.Screening.Movie.Description,
+                        Duration = user.Reservation.Screening.Movie.Duration,
+                    }
+            };
             }
             else {
                 return null;

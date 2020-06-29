@@ -15,8 +15,12 @@ namespace MoviePlus.Application.Dto
 
         public string Auditorium { get; set; }
 
-        public IEnumerable<ScreeningDto> ScreeningTime { get; set; }
+        public string Image { get; set; }
 
-        public int Tickets { get; set; }
+        public string Date { get; set; }
+
+        public string Time { get; set; }
+
+        public IEnumerable<ScreeningDto> ScreeningTime { get; set; }
     }
 }

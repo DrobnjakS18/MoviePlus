@@ -14,8 +14,6 @@ namespace MoviePlus.DataAccess.Configurations
 
             builder.Property(s => s.Number).IsRequired();
 
-            builder.HasMany(a => a.SeatReserved).WithOne(s => s.Seat).HasForeignKey(s => s.SeatId).OnDelete(DeleteBehavior.Restrict);
-
         }
     }
 }

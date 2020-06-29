@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\drobn\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\drobn\\.nuget\\packages"
+      "C:\\Users\\Threedium\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Threedium\\.nuget\\packages"
     ]
   }
 }

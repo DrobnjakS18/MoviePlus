@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj": {}
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj": {
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj",
         "projectName": "MoviePlus.Application",
-        "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj",
-        "packagesPath": "C:\\Users\\drobn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Application\\obj\\",
+        "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj",
+        "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\drobn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
-                "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj"
+              "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
+                "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj"
               }
             }
           }
@@ -56,21 +56,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
         "projectName": "MoviePlus.DataAccess",
-        "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\drobn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\drobn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -83,8 +83,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
-                "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj"
+              "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
+                "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj"
               }
             }
           }
@@ -134,21 +134,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
         "projectName": "MoviePlus.Domain",
-        "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
-        "packagesPath": "C:\\Users\\drobn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\MoviePlus.Domain.csproj",
+        "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\drobn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -186,21 +186,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj": {
+    "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj",
+        "projectUniqueName": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj",
         "projectName": "MoviePlus.Implementation",
-        "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj",
-        "packagesPath": "C:\\Users\\drobn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Implementation\\obj\\",
+        "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Implementation\\MoviePlus.Implementation.csproj",
+        "packagesPath": "C:\\Users\\Threedium\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Implementation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\drobn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Threedium\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -213,11 +213,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj": {
-                "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj"
+              "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj": {
+                "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.Application\\MoviePlus.Application.csproj"
               },
-              "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\drobn\\OneDrive\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj"
+              "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Threedium\\Desktop\\MoviePlus\\MoviePlus.DataAccess\\MoviePlus.DataAccess.csproj"
               }
             }
           }
@@ -258,7 +258,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

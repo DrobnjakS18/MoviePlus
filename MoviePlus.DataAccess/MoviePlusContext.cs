@@ -55,6 +55,7 @@ namespace MoviePlus.DataAccess
                     UserId = 1,
                     UseCaseId = 4,
                 },
+
                  new UserUseCases {
                     Id = 5,
                     UserId = 2,
@@ -100,6 +101,37 @@ namespace MoviePlus.DataAccess
                     UserId = 2,
                     UseCaseId = 3,
                 },
+                new UserUseCases {
+                    Id = 14,
+                    UserId = 1,
+                    UseCaseId = 5,
+                },
+                new UserUseCases {
+                    Id = 15,
+                    UserId = 1,
+                    UseCaseId = 6,
+                },
+                new UserUseCases {
+                    Id = 16,
+                    UserId = 1,
+                    UseCaseId = 7,
+                },
+                new UserUseCases {
+                    Id = 17,
+                    UserId = 1,
+                    UseCaseId = 8,
+                },
+                new UserUseCases {
+                    Id = 18,
+                    UserId = 1,
+                    UseCaseId = 9,
+                },
+                new UserUseCases {
+                    Id = 19,
+                    UserId = 1,
+                    UseCaseId = 10,
+
+                },
             };
 
             var movies = new List<Movie>
@@ -109,42 +141,49 @@ namespace MoviePlus.DataAccess
                     Title = "The Shawshank Redemption ",
                     Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
                     Duration = 142,
+                    Image = "d72a304f-b6b0-466f-806d-505756825176.jpg"
                 },
                 new Movie {
                     Id = 2,
                     Title = "The Godfather",
                     Description = "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
                     Duration = 175,
+                     Image = "6d5dd6aa-477a-4a6d-9e32-1133607881c5.jpg"
                 },
                 new Movie {
                     Id = 3,
                     Title = "The Dark Knight",
                     Description = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
                     Duration = 152,
+                     Image = "38e87283-fa50-4509-8a34-0b92afda5cc2.jpg"
                 },
                 new Movie {
                     Id = 4,
                     Title = "12 Angry Men",
                     Description = "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
                     Duration = 96,
+                     Image = "6d16d467-e8ac-4990-b5cd-1c3d103e82c0.jpg"
                 },
                 new Movie {
                     Id = 5,
                     Title = "Schindler's List",
                     Description = "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
                     Duration = 195,
+                     Image = "9b263823-5bf0-41a2-8ff2-a6c6f873c43c.jpg"
                 },
                 new Movie {
                     Id = 6,
                     Title = "The Lord of the Rings: The Return of the King",
                     Description = "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
                     Duration = 201,
+                    Image = "09459e52-bee9-4adc-8724-605b4f95fe62.jpg"
                 },
                 new Movie {
                     Id = 7,
                     Title = "Pulp Fiction",
                     Description = "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
                     Duration = 154,
+                    Image = "fc2645ba-d817-4a60-8150-f3c66777361b.jpg"
                 }
             };
 
@@ -214,28 +253,6 @@ namespace MoviePlus.DataAccess
                 },
             };
 
-            var seatsReserved = new List<SeatReserved>
-            {
-                new SeatReserved {
-                    Id = 1,
-                    SeatId = 1,
-                    ReservationId = 1,
-                    ScreeningId = 1
-                },
-                 new SeatReserved {
-                    Id = 2,
-                    SeatId = 2,
-                    ReservationId = 2,
-                    ScreeningId = 1
-                },
-                  new SeatReserved {
-                    Id = 3,
-                    SeatId = 3,
-                    ReservationId = 2,
-                    ScreeningId = 1
-                },
-            };
-
             var reservations = new List<Reservation>
             {
                 new Reservation {
@@ -246,13 +263,8 @@ namespace MoviePlus.DataAccess
                 new Reservation {
                    Id = 2,
                    UserId = 2,
-                   ScreeningId = 1
-                },
-                new Reservation {
-                   Id = 3,
-                   UserId = 2,
                    ScreeningId = 2
-                }
+                },
             };
 
 
@@ -262,7 +274,6 @@ namespace MoviePlus.DataAccess
             modelBuilder.Entity<Screening>().HasData(screening);
             modelBuilder.Entity<Auditorium>().HasData(auditoriums);
             modelBuilder.Entity<Seat>().HasData(seats);
-            modelBuilder.Entity<SeatReserved>().HasData(seatsReserved);
             modelBuilder.Entity<Reservation>().HasData(reservations);
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());
@@ -270,6 +281,9 @@ namespace MoviePlus.DataAccess
             modelBuilder.ApplyConfiguration(new ScreeningConfiguration());
             modelBuilder.ApplyConfiguration(new SeatConfiguration());
             modelBuilder.ApplyConfiguration(new ReservationConfiguration());
+
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Reservation>().ToTable("Reservations");
 
             modelBuilder.Entity<Screening>().HasIndex(p => new {  p.AuditoriumId, p.ScreeningTime }).IsUnique();
         }
@@ -287,6 +301,5 @@ namespace MoviePlus.DataAccess
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Screening> Screenings { get; set; }
         public DbSet<Seat> Seats { get; set; }
-        public DbSet<SeatReserved> SeatsReserved { get; set; }
     }
 }

@@ -167,7 +167,7 @@ function callApi() {
       for(let item of data.executor.items) {
         html += `<div class="col-12 my-3 d-flex rounded">
                 <div class="col-3">
-                <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
+                <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
                 </div>
                 <div class="col-9 my-auto single-movie">
                   <h5><b>Title</b>: ${item.title}</h5>
@@ -251,7 +251,7 @@ function pagination() {
           for(let item of data.executor.items) {
             html += `<div class="col-12 my-3 d-flex rounded">
                     <div class="col-3">
-                    <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
+                    <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
                     </div>
                     <div class="col-9 my-auto single-movie">
                       <h5><b>Title</b>: ${item.title}</h5>

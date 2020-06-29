@@ -5,17 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200623143943_user config.cs" />
-    <Compile Remove="Migrations\20200623143943_user config.Designer.cs" />
-    <Compile Remove="Migrations\20200623144052_set current date.cs" />
-    <Compile Remove="Migrations\20200623144052_set current date.Designer.cs" />
-    <Compile Remove="Migrations\20200624094625_all db configurations.cs" />
-    <Compile Remove="Migrations\20200624094625_all db configurations.Designer.cs" />
-    <Compile Remove="Migrations\20200625140854_many to many.cs" />
-    <Compile Remove="Migrations\20200625140854_many to many.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>

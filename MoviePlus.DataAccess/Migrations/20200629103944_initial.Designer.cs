@@ -10,8 +10,8 @@ using MoviePlus.DataAccess;
 namespace MoviePlus.DataAccess.Migrations
 {
     [DbContext(typeof(MoviePlusContext))]
-    [Migration("20200626123627_seeder user password hash")]
-    partial class seederuserpasswordhash
+    [Migration("20200629103944_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,9 +67,6 @@ namespace MoviePlus.DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SeatNumbers")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -81,20 +78,18 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(9768),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(2353),
                             IsActive = true,
                             IsDeleted = false,
-                            Name = "Auditorium 1",
-                            SeatNumbers = 20
+                            Name = "Auditorium 1"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(594),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(2807),
                             IsActive = true,
                             IsDeleted = false,
-                            Name = "Auditorium 2",
-                            SeatNumbers = 30
+                            Name = "Auditorium 2"
                         });
                 });
 
@@ -147,7 +142,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(6076),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8736),
                             Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
                             Duration = 142,
                             IsActive = true,
@@ -157,7 +152,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7282),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(9959),
                             Description = "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
                             Duration = 175,
                             IsActive = true,
@@ -167,7 +162,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7327),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(9996),
                             Description = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
                             Duration = 152,
                             IsActive = true,
@@ -177,7 +172,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7331),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local),
                             Description = "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
                             Duration = 96,
                             IsActive = true,
@@ -187,7 +182,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7334),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(3),
                             Description = "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
                             Duration = 195,
                             IsActive = true,
@@ -197,7 +192,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7341),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(8),
                             Description = "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
                             Duration = 201,
                             IsActive = true,
@@ -207,7 +202,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7344),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(11),
                             Description = "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
                             Duration = 154,
                             IsActive = true,
@@ -248,7 +243,8 @@ namespace MoviePlus.DataAccess.Migrations
 
                     b.HasIndex("ScreeningId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Reservations");
 
@@ -256,7 +252,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(4208),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(4614),
                             IsActive = true,
                             IsDeleted = false,
                             ScreeningId = 1,
@@ -265,16 +261,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(5036),
-                            IsActive = true,
-                            IsDeleted = false,
-                            ScreeningId = 1,
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(5065),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(5407),
                             IsActive = true,
                             IsDeleted = false,
                             ScreeningId = 2,
@@ -315,9 +302,10 @@ namespace MoviePlus.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuditoriumId");
-
                     b.HasIndex("MovieId");
+
+                    b.HasIndex("AuditoriumId", "ScreeningTime")
+                        .IsUnique();
 
                     b.ToTable("Screenings");
 
@@ -326,7 +314,7 @@ namespace MoviePlus.DataAccess.Migrations
                         {
                             Id = 1,
                             AuditoriumId = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(7920),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(510),
                             IsActive = true,
                             IsDeleted = false,
                             MovieId = 1,
@@ -336,20 +324,30 @@ namespace MoviePlus.DataAccess.Migrations
                         {
                             Id = 2,
                             AuditoriumId = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(9233),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(1817),
                             IsActive = true,
                             IsDeleted = false,
-                            MovieId = 3,
-                            ScreeningTime = new DateTime(2020, 7, 2, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                            MovieId = 1,
+                            ScreeningTime = new DateTime(2020, 7, 2, 15, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             AuditoriumId = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(9264),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(1849),
                             IsActive = true,
                             IsDeleted = false,
-                            MovieId = 5,
+                            MovieId = 2,
+                            ScreeningTime = new DateTime(2020, 7, 2, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AuditoriumId = 2,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(1852),
+                            IsActive = true,
+                            IsDeleted = false,
+                            MovieId = 3,
                             ScreeningTime = new DateTime(2020, 7, 3, 20, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -393,7 +391,7 @@ namespace MoviePlus.DataAccess.Migrations
                         {
                             Id = 1,
                             AuditoriumId = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(1112),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(3301),
                             IsActive = true,
                             IsDeleted = false,
                             Number = 1
@@ -402,7 +400,7 @@ namespace MoviePlus.DataAccess.Migrations
                         {
                             Id = 2,
                             AuditoriumId = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(1898),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(4108),
                             IsActive = true,
                             IsDeleted = false,
                             Number = 2
@@ -411,7 +409,7 @@ namespace MoviePlus.DataAccess.Migrations
                         {
                             Id = 3,
                             AuditoriumId = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(1928),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 402, DateTimeKind.Local).AddTicks(4132),
                             IsActive = true,
                             IsDeleted = false,
                             Number = 1
@@ -451,45 +449,7 @@ namespace MoviePlus.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReservationId");
-
-                    b.HasIndex("ScreeningId");
-
-                    b.HasIndex("SeatId");
-
                     b.ToTable("SeatsReserved");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(2508),
-                            IsActive = true,
-                            IsDeleted = false,
-                            ReservationId = 1,
-                            ScreeningId = 1,
-                            SeatId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(3658),
-                            IsActive = true,
-                            IsDeleted = false,
-                            ReservationId = 2,
-                            ScreeningId = 1,
-                            SeatId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 720, DateTimeKind.Local).AddTicks(3694),
-                            IsActive = true,
-                            IsDeleted = false,
-                            ReservationId = 2,
-                            ScreeningId = 1,
-                            SeatId = 3
-                        });
                 });
 
             modelBuilder.Entity("MoviePlus.Domain.User", b =>
@@ -548,7 +508,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 715, DateTimeKind.Local).AddTicks(5554),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 398, DateTimeKind.Local).AddTicks(1164),
                             Email = "admin@gmail.com",
                             FirstName = "Admin",
                             IsActive = true,
@@ -560,7 +520,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(3981),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(6548),
                             Email = "user@gmail.com",
                             FirstName = "User",
                             IsActive = true,
@@ -609,7 +569,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(4663),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(7251),
                             IsActive = true,
                             IsDeleted = false,
                             UseCaseId = 1,
@@ -618,7 +578,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(5518),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8144),
                             IsActive = true,
                             IsDeleted = false,
                             UseCaseId = 2,
@@ -627,7 +587,7 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(5545),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8170),
                             IsActive = true,
                             IsDeleted = false,
                             UseCaseId = 3,
@@ -636,10 +596,100 @@ namespace MoviePlus.DataAccess.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2020, 6, 26, 14, 36, 26, 719, DateTimeKind.Local).AddTicks(5548),
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8174),
                             IsActive = true,
                             IsDeleted = false,
                             UseCaseId = 4,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8177),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 6,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8182),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 7,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8185),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 8,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8188),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 9,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8191),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 10,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8195),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 11,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8199),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 12,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8202),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 13,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8205),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 3,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2020, 6, 29, 12, 39, 44, 401, DateTimeKind.Local).AddTicks(8208),
+                            IsActive = true,
+                            IsDeleted = false,
+                            UseCaseId = 5,
                             UserId = 1
                         });
                 });
@@ -647,14 +697,14 @@ namespace MoviePlus.DataAccess.Migrations
             modelBuilder.Entity("MoviePlus.Domain.Reservation", b =>
                 {
                     b.HasOne("MoviePlus.Domain.Screening", "Screening")
-                        .WithMany()
+                        .WithMany("Reservations")
                         .HasForeignKey("ScreeningId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MoviePlus.Domain.User", "User")
-                        .WithMany("Reservations")
-                        .HasForeignKey("UserId")
+                        .WithOne("Reservation")
+                        .HasForeignKey("MoviePlus.Domain.Reservation", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -680,27 +730,6 @@ namespace MoviePlus.DataAccess.Migrations
                         .WithMany("Seats")
                         .HasForeignKey("AuditoriumId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MoviePlus.Domain.SeatReserved", b =>
-                {
-                    b.HasOne("MoviePlus.Domain.Reservation", "Reservation")
-                        .WithMany("SeatReserved")
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MoviePlus.Domain.Screening", "Screening")
-                        .WithMany("SeatReserved")
-                        .HasForeignKey("ScreeningId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MoviePlus.Domain.Seat", "Seat")
-                        .WithMany("SeatReserved")
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

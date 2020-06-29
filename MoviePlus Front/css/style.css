@@ -48,3 +48,7 @@ table .fa:hover {
 .log-search-bar {
     display: none;
 }
+
+.show-image {
+    display: none;
+}

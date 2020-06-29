@@ -11,7 +11,7 @@ namespace MoviePlus.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Reservation> builder)
         {
-            builder.HasMany(r => r.SeatReserved).WithOne(s => s.Reservation).HasForeignKey(s => s.ReservationId).OnDelete(DeleteBehavior.Cascade);
+           
         }
     }
 }

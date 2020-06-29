@@ -12,7 +12,5 @@ namespace MoviePlus.Domain
         public int AuditoriumId { get; set; }
 
         public Auditorium Auditorium { get; set; }
-
-        public ICollection<SeatReserved> SeatReserved { get; set; }
     }
 }

@@ -13,7 +13,5 @@ namespace MoviePlus.Domain
         public User User { get; set; }
 
         public Screening Screening { get; set; }
-
-        public ICollection<SeatReserved> SeatReserved { get; set; }
     }
 }

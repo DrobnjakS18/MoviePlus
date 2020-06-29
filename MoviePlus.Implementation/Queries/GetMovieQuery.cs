@@ -63,6 +63,7 @@ namespace MoviePlus.Implementation.Queries
                     Title = x.Title,
                     Description = x.Description,
                     Duration = x.Duration,
+                    Image = x.Image,
                     ScreeningTime = x.Screenings.Where(s => s.MovieId == x.Id).Select(a => new ScreeningDto
                     {
                         Id = a.Id,
