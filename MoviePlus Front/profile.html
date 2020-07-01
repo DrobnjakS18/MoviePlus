@@ -49,20 +49,7 @@
         <div class="col-12">
            <div class="row">
             <h4><u>Tickets:</u></h4>
-             <div class="col-12  d-flex rounded">
-               <div class="col-3">
-                <img class="img-fluid my-4" src="images/blue-profile-image.jpg" alt="Movie image">
-               </div>
-               <div class="col-9 my-auto single-movie">
-                 <h5><b>Title</b>: Title 1</h5>
-                 <p><b>Descripiton:</b> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae animi quos sequi molestias laudantium similique placeat. Rerum veritatis doloremque sunt officiis, eos omnis architecto iure quod corrupti excepturi blanditiis debitis.</p>
-                 <p><b>Duration</b>: 100</p>
-                 <p><b>Auditorium</b>: 1</p>
-                 <p><b>Row</b>: 5</p>
-                 <p><b>Seat number</b>: 2</p>
-                 <button class="btn btn-danger">Cancel</button>
-                </div>
-             </div>
+             <div id="tickets"></div>
             
         </div>
       </div>
@@ -82,7 +69,7 @@
             'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
           },
           success: function(data) {
-
+              console.log(data);
               //Podesiti use case koji ce da bude samo za admina
               if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
                 $('.admin-panel').css('display','block');
@@ -92,6 +79,27 @@
             $('.last').html(data.executor.lastName);
             $('.username').html(data.executor.username);
             $('.email').html(data.executor.email);
+
+            let html = "";
+
+            for(let item of data.executor.tickets) {
+            html += `<div class="col-12 my-3 d-flex rounded">
+                    <div class="col-3">
+                    <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
+                    </div>
+                    <div class="col-5 my-auto single-movie">
+                      <h5><b>Title</b>: ${item.title}</h5>
+                      <p><b>Descripiton:</b> ${item.description}</p>
+                      <p><b>Duration</b>: ${item.duration} min.</p>
+                      <p><b>Date</b>: ${takeFullDate(item.screeningTime)}</p>
+                      <p><b>Auditorium</b>: ${item.auditorium}</p>
+                      <button class="btn btn-danger">Cancel</button>
+                    </div>
+                  </div>`;
+            }
+
+            $('#tickets').html(html);
+
           },
           error: function(xhr, status, error) {
             if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {

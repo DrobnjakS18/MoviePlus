@@ -12,9 +12,11 @@ namespace MoviePlus.Domain
 
         public DateTime ScreeningTime { get; set; }
 
-        public Movie Movie { get; set; }
-        public Auditorium Auditorium { get; set; }
+        public virtual Movie Movie { get; set; }
+        public virtual  Auditorium Auditorium { get; set; }
 
-        public IEnumerable<Reservation> Reservations { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
+
+        public virtual ICollection<SeatReserved> SeatReserveds { get; set; }
     }
 }

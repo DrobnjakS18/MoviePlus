@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Movie</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+      <div class="container">
+        <a class="navbar-brand text-white" href="/dashboard.html">MOVIE PLUS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/dashboard.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link admin-panel" href="/admin.html">Admin Panel</a>
+          </li>
+        </ul>
+      </div>
+      <a href="#" class="log-out text-white">Log out</a>
+      </div>
+    </nav>
+      <div class="container mt-5">
+        
+        <div class="row">
+            <div class="col-6 offset-3 mt-5">
+                <h2 class="text-center">Update Movie</h2>
+                <form enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title"  placeholder="Enter title">                          
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label><br>
+                      <textarea name="description" class="form-control"  id="description" rows="3" placeholder="Enter description"></textarea>                      
+                    </div>
+                    <div class="form-group">
+                      <label for="duration">Duration(in minutes)</label>
+                        <input type="number" class="form-control" id="duration" placeholder="Enter Duration" value="0">                          
+                    </div>
+                    <div class="form-group">
+                      <label for="image">Upload image</label><br>
+                        <input type="file" name="image" id="image" accept="image/*">
+                        <input type="hidden" name='image-name' id='image-name'/>
+                        <div class="col-12 my-4 text-center">
+                          <img class="show-image img-fluid" src="" alt="Movie Image"/>   
+                        </div>                  
+                    </div>
+                    <button type="submit" class="movie-submit btn btn-primary my-5">Submit</button>
+                </form>
+                <div class="errors alert alert-danger mt-3"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+<script>
+
+    getMovie();
+    function getMovie() {
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:5101/api/movie/" +  window.sessionStorage.movieId,
+            headers : {
+                'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            //Mora da se definise contentType kako bi server podrzao JSON 
+            contentType: 'application/json',
+            dataType: "json",
+            success: function(data) {
+              if(data) {
+                $('#title').val(data.title);
+                $("#description").val(data.description);
+                $("#duration").val(data.duration);
+                $('.show-image').attr('src', `http://localhost:5101/Images/${data.image}`).show();
+                // $('#image').val(data.image);
+              }
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              
+              alert(status)
+            }
+        });
+    }
+
+
+    function selectElement(id, valueToSelect) {    
+        let element = document.getElementById(id);
+        element.value = valueToSelect;
+    } 
+
+    if(window.sessionStorage.actor == "1") {
+        $('.admin-panel').css('display','block');
+      };
+
+    $('input[type="file"]').on('change', function(e) {
+        e.preventDefault;
+      var fd = new FormData();
+      //Dohvatamo file
+      var image = $(this).prop('files')[0];
+
+      fd.append('image', image);
+
+      $.ajax({
+            method: "POST",
+            url: "http://localhost:5101/api/upload",
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            dataType: "json",
+            contentType: false,// obavezna podesavanja prilikom slanja slike
+            processData: false,//
+            data: fd,
+            success: function(data) {
+              if(data) {
+                $('#image-name').val(data.imageName);
+                $('.show-image').attr('src', `http://localhost:5101/Images/${data.imageName}`).show();
+              }    
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              
+              if(status == 401 || status == 500) {
+                alert("Application is not currently working. Please come back later");
+              } 
+            }
+        });
+    });
+
+
+
+    $('.movie-submit').click( function(e) {
+        e.preventDefault();
+        var title = $('#title').val();
+        var description = $("#description").val();
+        var duration = $("#duration").val();
+
+        var newImageName = $("#image-name").val();
+
+        var dbImageName;
+        if(newImageName == '') {
+          var imageName = $('.show-image').attr('src');
+
+          var dbImage = imageName.split("/");
+
+          dbImageName = dbImage[dbImage.length -1];
+        } else {
+          dbImageName = newImageName;
+        }
+
+        (parseInt(duration) == NaN)? duration = 0 : duration = parseInt(duration) ;
+
+        let podaci = {
+          title : title,
+          description : description,
+          duration : duration,
+          image : dbImageName,
+        };
+
+        $.ajax({
+            method: "PUT",
+            url: "http://localhost:5101/api/movie/" + window.sessionStorage.movieId,
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            contentType: 'application/json',
+            dataType: "json",
+            data: JSON.stringify(podaci),
+            success: function() {
+             alert("Movie succesfully updated");
+             location.reload();
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+
+              switch(status) {
+                case 422:  
+                    var errors = xhr.responseJSON.errors;
+
+                    var temp = "<ul>";
+                    for(let er of errors) {
+                      temp += `<li>${er.ErrorMessage}</li>`;
+                    }
+                    temp += "</ul>";
+
+                    $('.errors').html(temp).show();
+                  break;
+                 case 404:
+                   alert('Movie not found');
+                   break; 
+                default:  
+                  alert("Application is not currently working. Please come back later");
+                  break;
+              }
+            }
+        });
+    });
+</script>
+  </body>
+</html>

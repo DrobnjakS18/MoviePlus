@@ -36,6 +36,26 @@ namespace MoviePlus.Implementation.Commands
                 try
                 {
 
+                    //Proveriti kasnije da li radi soft delete iz SeatReserveds tabele
+                    var movieScreening = _context.Screenings.Where(s => s.MovieId == movie.Id);
+
+                    if (movieScreening != null) {
+
+                    foreach (var time in movieScreening)
+                        {
+
+                            time.SeatReserveds.Select(s => new SeatReserved
+                            {
+                                IsActive = false,
+                                IsDeleted = true,
+                                DeletedAt = DateTime.Now
+                            });
+                        }
+                        _context.SaveChanges();
+                    }
+
+
+
                     var screening = _context.Screenings.Where(s => s.MovieId == movie.Id).Select(s => new Screening { 
                         IsActive = false,
                         IsDeleted = true,

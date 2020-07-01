@@ -14,7 +14,7 @@ namespace MoviePlus.Domain
 
         public string Image { get; set; }
 
-        public ICollection<Screening> Screenings { get; set; }
+        public virtual ICollection<Screening> Screenings { get; set; }
 
         //public ICollection<Auditorium> Auditoriums { get; set; }
     }

@@ -33,15 +33,6 @@ namespace MoviePlus.Implementation.Validation
             RuleFor(x => x.Image)
                 .NotEmpty();
 
-            RuleFor(x => x.Date)
-                .NotEmpty();
-
-            RuleFor(x => x.Time)
-                .NotEmpty();
-
-            RuleFor(x => x.Auditorium)
-               .NotEmpty();
-
          
         }
     }

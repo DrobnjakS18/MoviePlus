@@ -10,6 +10,6 @@ namespace MoviePlus.Domain
 
         public int UseCaseId { get; set; }
 
-        public User Users { get; set; }
+        public virtual User Users { get; set; }
     }
 }

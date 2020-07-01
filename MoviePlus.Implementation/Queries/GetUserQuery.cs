@@ -1,4 +1,5 @@
-﻿using MoviePlus.Application.Dto;
+﻿using Microsoft.EntityFrameworkCore;
+using MoviePlus.Application.Dto;
 using MoviePlus.Application.Exceptions;
 using MoviePlus.Application.Queries;
 using MoviePlus.DataAccess;
@@ -27,7 +28,6 @@ namespace MoviePlus.Implementation.Queries
         {
             var user = _context.Users.Find(search);
 
-            //var Id = user. Reservation.Screening.Movie.Id;
 
             if (user != null)
             {
@@ -40,13 +40,20 @@ namespace MoviePlus.Implementation.Queries
                     LastName = user.LastName,
                     Email = user.Email,
                     Username = user.Username,
-                    Ticket = new MovieDto {
-                        Id = user.Reservation.Screening.Movie.Id,
-                        Title = user.Reservation.Screening.Movie.Title,
-                        Description = user.Reservation.Screening.Movie.Description,
-                        Duration = user.Reservation.Screening.Movie.Duration,
-                    }
+                    //Koristiti include za dohvatenje podataka iz vezivnih tabela
+                    Tickets = _context.Reservations.Include(u => u.User).Include(s => s.Screening).Where(u => u.UserId == user.Id).Select(r => new MovieDto
+                    {
+                        Id = r.Screening.Movie.Id,
+                        Title = r.Screening.Movie.Title,
+                        Description = r.Screening.Movie.Description,
+                        Duration = r.Screening.Movie.Duration,
+                        Image = r.Screening.Movie.Image,
+                        ScreeningTime = r.Screening.ScreeningTime,
+                        Auditorium = r.Screening.Auditorium.Name
+                    }).ToList()
+
             };
+
             }
             else {
                 return null;

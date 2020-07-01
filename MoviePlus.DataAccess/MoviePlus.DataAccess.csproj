@@ -5,6 +5,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200630234835_Reservarition seeder.cs" />
+    <Compile Remove="Migrations\20200630234835_Reservarition seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200630234951_Reservarition seeder.cs" />
+    <Compile Remove="Migrations\20200630234951_Reservarition seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200630235009_Reservarition seeder.cs" />
+    <Compile Remove="Migrations\20200630235009_Reservarition seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200630235029_Reservarition seeder.cs" />
+    <Compile Remove="Migrations\20200630235029_Reservarition seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200630235656_Reservarition seeder.cs" />
+    <Compile Remove="Migrations\20200630235656_Reservarition seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701002745_Reservation seeder.cs" />
+    <Compile Remove="Migrations\20200701002745_Reservation seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701003012_Reservation seeder.cs" />
+    <Compile Remove="Migrations\20200701003012_Reservation seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701003136_Reservation seeder.cs" />
+    <Compile Remove="Migrations\20200701003136_Reservation seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701101851_SeatReserved table.cs" />
+    <Compile Remove="Migrations\20200701101851_SeatReserved table.Designer.cs" />
+    <Compile Remove="Migrations\20200701102030_SeatReserved table.cs" />
+    <Compile Remove="Migrations\20200701102030_SeatReserved table.Designer.cs" />
+    <Compile Remove="Migrations\20200701102105_SeatReserved table.cs" />
+    <Compile Remove="Migrations\20200701102105_SeatReserved table.Designer.cs" />
+    <Compile Remove="Migrations\20200701104755_SeatReserved composite key.cs" />
+    <Compile Remove="Migrations\20200701104755_SeatReserved composite key.Designer.cs" />
+    <Compile Remove="Migrations\20200701105009_SeatReserved composite key.cs" />
+    <Compile Remove="Migrations\20200701105009_SeatReserved composite key.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>

@@ -58,32 +58,6 @@
                           <img class="show-image img-fluid" src="" alt="Movie Image"/>   
                         </div>                  
                     </div>
-                    <div class="form-group">
-                        <div class="row d-flex align-items-center">
-                          <div class="col">
-                          <span>Date:</span><br>
-                          <input type="date" id="date" name="date">
-                        </div>
-                        <div class="col">
-                          <span>Time:</span>
-                          <select id="screeningTime" class="form-control">
-                            <option value="15" selected>15:00</option>
-                            <option value="17">17:00</option>
-                            <option value="20">20:00</option>
-                          </select>
-                        </div> 
-                        </div>                   
-                    </div>
-                    <div class="form-group">
-                      <div class="col-4 pl-0">
-                        <span>Auditorium:</span>
-                        <select id="auditorium" class="form-control">
-                          <option value="1" selected>Auditorium 1</option>
-                          <option value="2">Auditorium 2</option>
-                        </select> 
-                      </div>    
-                      <p class="text-info">* Screening time and Auditorium must be unique in database, if not server will return status code 500</p>        
-                    </div>
                     <button type="submit" class="movie-submit btn btn-primary">Submit</button>
                 </form>
                 <div class="errors alert alert-danger mt-3"></div>
@@ -142,9 +116,6 @@
         var description = $("#description").val();
         var duration = $("#duration").val();
         var imageName = $("#image-name").val();
-        var date = $("#date").val();
-        var time = $("#screeningTime").val();
-        var auditorium = $("#auditorium").val();
 
         (parseInt(duration) == NaN)? duration = 0 : duration = parseInt(duration) ;
 
@@ -153,9 +124,6 @@
           description : description,
           duration : duration,
           image : imageName,
-          date : date,
-          time : time,
-          auditorium : auditorium
         };
 
         $.ajax({
@@ -191,12 +159,6 @@
 
                   $('.errors').html(temp).show();
                   break;
-                case 400:
-                  alert("Date is requried");
-                  break;  
-                case 409:
-                  alert("Date cannot be in past");
-                  break; 
                 default:  
                   alert("Application is not currently working. Please come back later");
                   break;

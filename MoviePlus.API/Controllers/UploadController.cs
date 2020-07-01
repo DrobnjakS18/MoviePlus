@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,7 @@ namespace MoviePlus.API.Controllers
     {
         // POST api/upload
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromForm] UploadDto dto)
         {
             var guid = Guid.NewGuid();

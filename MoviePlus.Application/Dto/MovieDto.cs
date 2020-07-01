@@ -21,6 +21,8 @@ namespace MoviePlus.Application.Dto
 
         public string Time { get; set; }
 
-        public IEnumerable<ScreeningDto> ScreeningTime { get; set; }
+        public DateTime ScreeningTime { get; set; }
+
+        public ICollection<ScreeningDto> Screening { get; set; }
     }
 }

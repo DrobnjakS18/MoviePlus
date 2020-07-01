@@ -1,4 +1,5 @@
 ﻿using MoviePlus.Application.Dto;
+using MoviePlus.Application.Exceptions;
 using MoviePlus.Application.Queries;
 using MoviePlus.Application.Searches;
 using MoviePlus.DataAccess;
@@ -25,6 +26,56 @@ namespace MoviePlus.Implementation.Queries
         {
             //gradimo query
             var query = _context.AuditLogger.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search.StartDate) && !string.IsNullOrWhiteSpace(search.EndDate))
+            {
+                var splitStartDate = search.StartDate.Split('-');
+
+                var splitEndDate = search.EndDate.Split('-');
+
+                var startDate = new DateTime(int.Parse(splitStartDate[0]), int.Parse(splitStartDate[1]), int.Parse(splitStartDate[2]), 0, 0, 0);
+
+                var endDate = new DateTime(int.Parse(splitEndDate[0]), int.Parse(splitEndDate[1]), int.Parse(splitEndDate[2]), 0, 0, 0);
+
+
+                if (endDate < startDate)
+                {
+                    throw new NotFoundException(this.Id, typeof(MovieDto));
+                }
+                else if (endDate == startDate)
+                {
+                    query = query.Where(m => m.Time.Year == startDate.Year).Where(m => m.Time.Month == startDate.Month).Where(m => m.Time.Day == startDate.Day);
+                }
+                else {
+                    query = query.Where(m => m.Time >= startDate).Where(m => m.Time < endDate);
+                }
+
+            }
+            else if (!string.IsNullOrEmpty(search.StartDate) || !string.IsNullOrWhiteSpace(search.StartDate))
+            {
+                var splitDate = search.StartDate.Split('-');
+
+                var startDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), 0, 0, 0);
+
+                query = query.Where(m => m.Time.CompareTo(startDate) >= 0);
+            }
+            else if (!string.IsNullOrEmpty(search.EndDate) || !string.IsNullOrWhiteSpace(search.EndDate))
+            {
+                var splitDate = search.EndDate.Split('-');
+
+                var endDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), 0, 0, 0);
+
+                query = query.Where(m => m.Time.CompareTo(endDate) <= 0);
+            }
+            
+
+
+
+
+
+
+
+
 
             if (!string.IsNullOrEmpty(search.Actor) || !string.IsNullOrWhiteSpace(search.Actor))
             {

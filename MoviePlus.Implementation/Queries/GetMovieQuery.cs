@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoviePlus.Application.Dto;
+using MoviePlus.Application.Exceptions;
 using MoviePlus.Application.Queries;
 using MoviePlus.Application.Searches;
 using MoviePlus.DataAccess;
@@ -29,9 +30,19 @@ namespace MoviePlus.Implementation.Queries
             //gradimo query
             var query = _context.Movies.AsQueryable();
 
-            //var splitDate = search.Date.Split('-');
+            if (!string.IsNullOrEmpty(search.Date) || !string.IsNullOrWhiteSpace(search.Date) || !string.IsNullOrEmpty(search.Time) || !string.IsNullOrWhiteSpace(search.Time))
+            {
+                var splitDate = search.Date.Split('-');
 
-            //var searchDate = new DateTime(int.Parse(splitDate[0]) , int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
+                var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
+
+                if (searchDate <= DateTime.Now) {
+                    throw new NotFoundException(this.Id, typeof(MovieDto));
+                }
+
+                query = query.Where(m => m.Screenings.Where(s => s.ScreeningTime == searchDate).Any());
+            }
+
 
             //U slucaju da query nije prazan odradjujemo where
             if (!string.IsNullOrEmpty(search.Title) || !string.IsNullOrWhiteSpace(search.Title))
@@ -64,12 +75,14 @@ namespace MoviePlus.Implementation.Queries
                     Description = x.Description,
                     Duration = x.Duration,
                     Image = x.Image,
-                    ScreeningTime = x.Screenings.Where(s => s.MovieId == x.Id).Select(a => new ScreeningDto
-                    {
-                        Id = a.Id,
-                        AuditoriumName = a.Auditorium.Name,
-                        Seats = a.Auditorium.Seats.Where(se => se.AuditoriumId == a.Id).Count(),
-                        ScreeningTime = a.ScreeningTime
+                    Screening = x.Screenings.Select(s => new ScreeningDto
+                    { 
+                        Id = s.Id,
+                        ScreeningTime = s.ScreeningTime,
+                        MovieId = s.MovieId,
+                        AuditoriumName = s.Auditorium.Name,
+                        //Kolona IsActive ako je true znaci da je slobodna, false znaci da je rezervisana
+                        Seats = s.SeatReserveds.Where(s => s.IsActive == true).Count()
                     }).ToList()
                 }).ToList()
             };

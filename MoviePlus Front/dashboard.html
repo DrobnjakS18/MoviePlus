@@ -53,7 +53,7 @@
             <option value="10">10</option>
           </select>
         </div>
-        <!-- <div class="col-2">
+        <div class="col-2">
           <span>Date:</span>
           <input type="date" id="date" name="date">
         </div>
@@ -64,7 +64,7 @@
             <option value="17">17:00</option>
             <option value="20">20:00</option>
           </select>
-        </div> -->
+        </div>
       </div>
 
       <div class="row">
@@ -76,7 +76,6 @@
             <div class="col-12 ">
               <div class="pages"></div>
             </div>
-          
         </div>
       </div>
     </div>
@@ -86,11 +85,15 @@
     <script src="js/script.js"></script>
     <script> 
 
+
+
 var currentTime = new Date();    
 var currentDate = currentTime.getDate();
 var currentYear = currentTime.getFullYear();
 var currentMounth = currentTime.getMonth()+1;
-var selectedTime = "15";
+// var selectedTime = "15";
+
+var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${currentDate}`;
 
 $('#screeningTime').on('change', function() {
 
@@ -106,26 +109,20 @@ function leadingZero(time) {
   return modified;
 }
 
-var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${currentDate}`;
 
 var selectedDate = null;
+var selectedTime = null;
 $('#date').on('change', function() {
   
   let date = $(this).val();
-
-  selectedDate = date + ' ' + selectedTime;
-
+  selectedDate = date
   callApi();
 });
 
+
+
 var searchName = null;
 
-
-function takeDate(date){
-    let splitDate = date.split("T");
-
-    return splitDate[0] + " " +splitDate[1];
-  }
 
 
 callApi();
@@ -133,20 +130,17 @@ callApi();
 function callApi() {
 
   let perPage = $("#perPage").val();
-  // let selectedTime = $("#screeningTime").val();
+  let selectedTime = $("#screeningTime").val();
 
   let queryString = `ItemsPerPage=${perPage}`;
-  // queryString = `&Time=${selectedTime}`;
 
   if(searchName != null) {
     queryString += `&Title=${searchName}`;
   }
 
-  // if(selectedDate != null) {
-  //   queryString += `&Date=${selectedDate}`;
-  // } else {
-  //   queryString += `&Date=${currentJoinDate}`;
-  // }
+  if(selectedDate != null) {
+    queryString += `&Date=${selectedDate}&Time=${selectedTime}`;
+  }
 
   $.ajax({
   url : `http://localhost:5101/api/movie?${queryString}`,
@@ -154,6 +148,10 @@ function callApi() {
     'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
   },
   success: function(data) {
+
+
+    console.log(data);
+
     window.sessionStorage.actor = data.actor.id;
       $("#total").html(data.executor.totalCount);
       $('.current').html(data.executor.currentPage);
@@ -169,17 +167,24 @@ function callApi() {
                 <div class="col-3">
                 <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
                 </div>
-                <div class="col-9 my-auto single-movie">
+                <div class="col-5 my-auto single-movie">
                   <h5><b>Title</b>: ${item.title}</h5>
                   <p><b>Descripiton:</b> ${item.description}</p>
-                  <p><b>Duration</b>: ${item.duration}</p>`;
-                 
-                  for(let datum of item.screeningTime) {
-                    html +=`<p><b>Auditorium</b>: ${datum.auditorium}</p>
-                            <p><b>Date</b>: ${takeDate(datum.screeningTime)}</p>
-                            <p><b>Number of available seats</b>: ${datum.seats}</p>`;
+                  <p><b>Duration</b>: ${item.duration} min.</p>`;
+
+                  for(let sc of item.screening){
+                    let screeningDate = takeDate(sc.screeningTime);
+                    let screeningTime = takeTime(sc.screeningTime);
+
+                    if(selectedDate == screeningDate) {
+                      html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
+                      <p><b>Auditorium</b>: <span class="aud-name">${sc.auditoriumName}</span></p>
+                      <p><b>Available seats</b>: ${sc.seats}</p>
+                      <input type="hidden" name="screening" id="screening" value="${sc.id}">`;
+                    }
                   }
-                  html += `<button class="btn btn-primary">Buy Ticket</button>
+
+                  html += `<button class="buy-ticket btn btn-primary">Buy Ticket</button>
                 </div>
               </div>`;
       }
@@ -196,16 +201,77 @@ function callApi() {
       $(".movies").html(html);
       $('.pages').html(pages);
 
-
       pagination();
+
+
+
+      $('.buy-ticket').on('click', function(e) {
+        e.preventDefault;
+        let screeningString = $('#screening').val();
+
+        let userId = data.actor.id;
+
+        let screeningId = parseInt(screeningString);
+
+        let auditorium = $('.aud-name').text();
+
+        let audId = null;
+        if(auditorium == "Auditorium 2") {
+          audId = 2;
+        } 
+
+        if(auditorium == "Auditorium 1") {
+          audId = 1;
+        } 
+
+        let podaci = {
+          userid : userId,
+          screeningid : screeningId,
+          auditoriumid : audId
+        }
+
+        console.log(podaci);
+
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:5101/api/reservation",
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            contentType: 'application/json',
+            dataType: "json",
+            data: JSON.stringify(podaci),
+            success: function() {
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+
+              if(status == 201) {
+                alert("You have successfully bought the ticket. Check profile to see all your tickets");
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
+            }
+        });
+
+
+      });
+
 
   },
   error: function(xhr, status, error) {
+    var status = xhr.status;
+
     if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
       window.location.href = '/index.html';
+    }
+
+    if(status == 404){
+      alert("Date must not be in the past");
     } else {
       alert("Application is not currently working. Please come back later");
     }
+ 
   }
 });
 }
@@ -253,17 +319,27 @@ function pagination() {
                     <div class="col-3">
                     <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
                     </div>
-                    <div class="col-9 my-auto single-movie">
+                    <div class="col-5 my-auto single-movie">
                       <h5><b>Title</b>: ${item.title}</h5>
                       <p><b>Descripiton:</b> ${item.description}</p>
-                      <p><b>Duration</b>: ${item.duration}</p>
-                      <p><b>Auditorium</b>: 1</p>
-                      <p><b>Number of available tickets</b>: 5</p>
-                      <button class="btn btn-primary">Buy Ticket</button>
+                      <p><b>Duration</b>: ${item.duration} min.</p>`;
+
+                      for(let sc of item.screening){
+                        let screeningDate = takeDate(sc.screeningTime);
+                        let screeningTime = takeTime(sc.screeningTime);
+
+                        if(selectedDate == screeningDate) {
+                          html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
+                          <p><b>Auditorium</b>: ${sc.auditoriumName}</p>
+                          <input type="hidden" name="screening" id="screening" value="${sc.id}">`;
+                        }
+                      }
+
+                      html += `<button class="btn btn-primary">Buy Ticket</button>
                     </div>
                   </div>`;
           }
-    
+        
           let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
     
           for(var page = 1; page <= data.executor.pageCount;page++){

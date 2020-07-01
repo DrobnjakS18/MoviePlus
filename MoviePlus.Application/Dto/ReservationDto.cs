@@ -9,5 +9,7 @@ namespace MoviePlus.Application.Dto
         public int UserId { get; set; }
 
         public int ScreeningId { get; set; }
+
+        public int AuditoriumId { get; set; }
     }
 }

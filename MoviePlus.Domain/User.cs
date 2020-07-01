@@ -16,8 +16,8 @@ namespace MoviePlus.Domain
 
         public string Password { get; set; }
 
-        public Reservation Reservation { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
 
-        public ICollection<UserUseCases> UserUseCases { get; set; }
+        public virtual ICollection<UserUseCases> UserUseCases { get; set; }
     }
 }

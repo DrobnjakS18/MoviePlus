@@ -12,6 +12,8 @@ namespace MoviePlus.Application.Searches
 
         public string Actor { get; set; }
 
-        public string Date { get; set; }
+        public string StartDate { get; set; }
+
+        public string EndDate { get; set; }
     }
 }

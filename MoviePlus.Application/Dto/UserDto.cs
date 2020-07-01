@@ -17,6 +17,6 @@ namespace MoviePlus.Application.Dto
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public MovieDto Ticket{ get; set; }
+        public IEnumerable<MovieDto> Tickets { get; set; }
     }
 }

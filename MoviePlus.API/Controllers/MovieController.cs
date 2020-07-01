@@ -39,6 +39,7 @@ namespace MoviePlus.API.Controllers
             [FromQuery] MovieSearch search,
             [FromServices] IGetMovieQuery query)
         {
+
             return Ok(new Response<MovieDto>
             {
                 Actor = _actor,
@@ -48,9 +49,12 @@ namespace MoviePlus.API.Controllers
 
         // GET api/movie/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id,
+            [FromServices] IGetSIngleMovieQuery query)
         {
-            return "value";
+            var data = _executor.ExecuteQuery(query, id);
+
+            return Ok(data);
         }
 
         // POST api/movie
@@ -60,31 +64,22 @@ namespace MoviePlus.API.Controllers
             [FromServices] IMovieInsert command)
         {
 
-            if (request.Date == "") 
-            {
-                return StatusCode(400);
-            }
-            else {
-
-                var splitDate = request.Date.Split('-');
-                var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(request.Time), 0, 0);
-
-                if (searchDate <= DateTime.Now) {
-                    return StatusCode(409);
-                }
-
-                _executor.ExecuteCommand(command, request);
-            }
-
-
+            _executor.ExecuteCommand(command, request);
 
             return StatusCode(201);
         }
 
         // PUT api/movie/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [Authorize]
+        public IActionResult Put(int id, 
+            [FromBody] MovieDto request,
+            [FromServices] IMovieUpdate command)
         {
+            request.Id = id;
+            _executor.ExecuteCommand(command, request);
+
+            return NoContent();
         }
 
         // DELETE api/movie/5

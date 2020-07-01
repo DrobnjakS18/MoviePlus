@@ -20,7 +20,7 @@ namespace MoviePlus.DataAccess.Configurations
             //Password nije zavrsen
             builder.Property(x => x.Password).HasMaxLength(32).IsRequired();
 
-            builder.HasOne(x => x.Reservation).WithOne(o => o.User).HasForeignKey<Reservation>(o => o.UserId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Reservations).WithOne(o => o.User).HasForeignKey(o => o.UserId).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.UserUseCases).WithOne(o => o.Users).HasForeignKey(o => o.UserId).OnDelete(DeleteBehavior.Cascade);
         }
