@@ -36,7 +36,7 @@ namespace MoviePlus.Implementation.Queries
 
                 var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
 
-                if (searchDate <= DateTime.Now) {
+                if (searchDate < DateTime.Now) {
                     throw new NotFoundException(this.Id, typeof(MovieDto));
                 }
 
@@ -55,9 +55,6 @@ namespace MoviePlus.Implementation.Queries
                 query = query.Where(x => x.Description.ToLower().Contains(search.Description.ToLower()));
             }
 
-            //query = query.Where(x => x.Screenings.Select(a => a.ScreeningTime).Equals(searchDate));
-
-            //Predstavlja broj podataka koje treba da preskoci
             var skipCount = search.ItemsPerPage * (search.CurrentPage - 1);
 
             //Obavezno je na kraju dodati .ToList()
@@ -76,7 +73,7 @@ namespace MoviePlus.Implementation.Queries
                     Duration = x.Duration,
                     Image = x.Image,
                     Screening = x.Screenings.Select(s => new ScreeningDto
-                    { 
+                    {
                         Id = s.Id,
                         ScreeningTime = s.ScreeningTime,
                         MovieId = s.MovieId,

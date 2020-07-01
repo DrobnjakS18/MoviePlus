@@ -39,20 +39,8 @@
           <h2 class="text-center">Movies</h2>
         </div>
       </div>
-      <div class="row">
-        <div class="col-4 d-flex">
-          <p class="my-auto pr-4">Search:</p><input type="text" class="form-control" id="name" onkeyup="filterByName()">
-        </div>  
-      </div>
-      <div class="row mt-5 text-center">
-        <div class="col-2 ">
-          <span>Per Page:</span>
-          <select id="perPage" class="form-control"  onchange="callApi()">
-            <option value="2" selected>2</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-          </select>
-        </div>
+      <div class="row mt-5 text-center d-flex justify-content-center">
+
         <div class="col-2">
           <span>Date:</span>
           <input type="date" id="date" name="date">
@@ -71,11 +59,7 @@
         <div class="col-12">
            <div class="row">
             <div class="movies"></div>
-            <p class="mx-auto">Current Page: <span class="current"></span></p>
            </div>
-            <div class="col-12 ">
-              <div class="pages"></div>
-            </div>
         </div>
       </div>
     </div>
@@ -88,12 +72,14 @@
 
 
 var currentTime = new Date();    
-var currentDate = currentTime.getDate();
+var currentDate = currentTime.getDate() +1;
 var currentYear = currentTime.getFullYear();
 var currentMounth = currentTime.getMonth()+1;
-// var selectedTime = "15";
+var selectedTime = "15";
 
 var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${currentDate}`;
+
+$('#date').val(currentJoinDate);
 
 $('#screeningTime').on('change', function() {
 
@@ -111,14 +97,12 @@ function leadingZero(time) {
 
 
 var selectedDate = null;
-var selectedTime = null;
 $('#date').on('change', function() {
   
   let date = $(this).val();
   selectedDate = date
   callApi();
 });
-
 
 
 var searchName = null;
@@ -129,17 +113,15 @@ callApi();
 
 function callApi() {
 
-  let perPage = $("#perPage").val();
   let selectedTime = $("#screeningTime").val();
 
-  let queryString = `ItemsPerPage=${perPage}`;
+  let queryString = `Time=${selectedTime}`;
 
-  if(searchName != null) {
-    queryString += `&Title=${searchName}`;
-  }
 
   if(selectedDate != null) {
-    queryString += `&Date=${selectedDate}&Time=${selectedTime}`;
+    queryString += `&Date=${selectedDate}`;
+  } else {
+    queryString += `&Date=${currentJoinDate}`;
   }
 
   $.ajax({
@@ -163,7 +145,7 @@ function callApi() {
       let html = "";
 
       for(let item of data.executor.items) {
-        html += `<div class="col-12 my-3 d-flex rounded">
+        html += `<div class="col-12 my-3 d-flex  justify-content-center rounded">
                 <div class="col-3">
                 <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
                 </div>
@@ -201,7 +183,6 @@ function callApi() {
       $(".movies").html(html);
       $('.pages').html(pages);
 
-      pagination();
 
 
 
@@ -276,97 +257,7 @@ function callApi() {
 });
 }
 
-function filterByName() {
-    var name = $("#name").val()
 
-    searchName = name;
-
-    callApi();
-}
-
-function pagination() {
-
-  $('.page').on('click', function() {
-    let clickedPage = $(this).data('page');
-
-    let pagPerPage = $("#perPage").val();
-  
-    let pagQueryString = `ItemsPerPage=${pagPerPage}`
-  
-    if(searchName != null) {
-      pagQueryString += `&Title=${searchName}`
-    }
-  
-    pagQueryString += `&CurrentPage=${clickedPage}`;
-
-    $.ajax({
-      url : `http://localhost:5101/api/movie?${pagQueryString}`,
-      headers : {
-        'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
-      },
-      success: function(data) {
-          $("#total").html(data.executor.totalCount);
-          $('.current').html(data.executor.currentPage);
-
-          if(jQuery.inArray(1, data.actor.allowedUseCase) !== -1) {
-            $('.admin-panel').css('display','block');
-          };
-    
-          let html = "";
-    
-          for(let item of data.executor.items) {
-            html += `<div class="col-12 my-3 d-flex rounded">
-                    <div class="col-3">
-                    <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
-                    </div>
-                    <div class="col-5 my-auto single-movie">
-                      <h5><b>Title</b>: ${item.title}</h5>
-                      <p><b>Descripiton:</b> ${item.description}</p>
-                      <p><b>Duration</b>: ${item.duration} min.</p>`;
-
-                      for(let sc of item.screening){
-                        let screeningDate = takeDate(sc.screeningTime);
-                        let screeningTime = takeTime(sc.screeningTime);
-
-                        if(selectedDate == screeningDate) {
-                          html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
-                          <p><b>Auditorium</b>: ${sc.auditoriumName}</p>
-                          <input type="hidden" name="screening" id="screening" value="${sc.id}">`;
-                        }
-                      }
-
-                      html += `<button class="btn btn-primary">Buy Ticket</button>
-                    </div>
-                  </div>`;
-          }
-        
-          let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
-    
-          for(var page = 1; page <= data.executor.pageCount;page++){
-    
-            pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
-          }
-    
-          pages += `</ul>`;
-    
-          $(".movies").html(html);
-          $('.pages').html(pages);
-    
-    
-          pagination();
-    
-      },
-      error: function(xhr, status, error) {
-        if(window.sessionStorage.accessToken == null || window.sessionStorage.accessToken == "null") {
-          window.location.href = '/index.html';
-        } else {
-          alert("Application is not currently working. Please come back later");
-        }
-      }
-    });
-
-  }); 
-}
     </script>
   </body>
 </html>

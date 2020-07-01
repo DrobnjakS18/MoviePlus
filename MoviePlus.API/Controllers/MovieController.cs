@@ -40,7 +40,7 @@ namespace MoviePlus.API.Controllers
             [FromServices] IGetMovieQuery query)
         {
 
-            return Ok(new Response<MovieDto>
+            return Ok(new 
             {
                 Actor = _actor,
                 Executor = _executor.ExecuteQuery(query, search)

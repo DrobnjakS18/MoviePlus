@@ -45,6 +45,11 @@
         <button class="admin-movies btn btn-secondary mr-3 px-5">Movies</button>
         <button class="admin-logs btn btn-secondary px-5">Logs</button>
       </div>
+      <div class="row mt-3 movie-search-bar">
+        <div class="col-10 d-flex">
+          <p class="search-title my-auto">Search TItle:</p><input type="text" class="form-control" id="name" onkeyup="filterByName()">
+        </div> 
+      </div>
       <div class="row mt-3 log-search-bar">
         <div class="col d-flex justify-content-between">
           <span>Search Actors:<input type="search" name='actor-search' class="actor-search ml-2" onkeyup="filterActors()"/></span> 
@@ -130,7 +135,8 @@ $('#end').on('change', function() {
               $("#total").html(data.executor.totalCount);
               $('.admin-current-page').html(data.executor.currentPage);
               $('.log-search-bar').hide();
-
+              $('.movie-search-bar').hide();
+              
               let html = `<a href="/registration.html" class="btn btn-primary float-right mb-3">Insert</a>
               <table class="table text-center">
             <thead class="thead-dark">
@@ -271,21 +277,39 @@ $('#end').on('change', function() {
       // 
       // MOVIES
       //
+      var searchName = null; 
+      function filterByName() {
+            var name = $("#name").val()
+
+            searchName = name;
+
+            getMovies();
+        }
+
       $('.admin-movies').on('click', function(e) {
         e.preventDefault;
         getMovies();
       });
 
       function getMovies() {
+
+        let queryString = "Title=";
+
+        if(searchName != null) {
+          queryString = `Title=${searchName}`;
+        } 
+
         $.ajax({
-          url : `http://localhost:5101/api/movie`,
+          url : `http://localhost:5101/api/movie?${queryString}`,
           headers : {
             'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
           },
           success: function(data) {
+            console.log(data);
             $("#total").html(data.executor.totalCount);
             $('.admin-current-page').html(data.executor.currentPage);
             $('.log-search-bar').hide();
+            $('.movie-search-bar').show();
 
               let html = `<a href="/insertMovie.html" class="btn btn-primary float-right mb-3">Insert</a>
               <table class="table text-center">
@@ -518,6 +542,8 @@ $('#end').on('change', function() {
             $("#total").html(data.executor.totalCount);
             $('.admin-current-page').html(data.executor.currentPage);
             $('.log-search-bar').show();
+            $('.movie-search-bar').hide();
+
 
               let html = `<table class="table text-center">
             <thead class="thead-dark">
