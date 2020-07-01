@@ -278,9 +278,6 @@ C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\
 C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.csproj.CoreCompileInputs.cache
-C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
@@ -353,3 +350,10 @@ C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\ru\Mi
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Threedium\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.csproj.CoreCompileInputs.cache
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\drobn\OneDrive\Desktop\MoviePlus\MoviePlus.API\obj\Debug\netcoreapp3.1\MoviePlus.API.MvcApplicationPartsAssemblyInfo.cache
