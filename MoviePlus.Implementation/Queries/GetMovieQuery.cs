@@ -27,17 +27,23 @@ namespace MoviePlus.Implementation.Queries
 
         public PageResponse<MovieDto> Execute(MovieSearch search)
         {
-            //gradimo query
             var query = _context.Movies.AsQueryable();
 
-            var splitDate = search.Date.Split('-');
+            //admin panel
+            if (!string.IsNullOrWhiteSpace(search.Time) || !string.IsNullOrWhiteSpace(search.Date))
+            {
+                var splitDate = search.Date.Split('-');
 
-            var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
+                var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
 
-            query = query.Where(m => m.Screenings.Where(s => s.ScreeningTime == searchDate).Any());
+                query = query.Where(m => m.Screenings.Where(s => s.ScreeningTime == searchDate).Any());
+            }
+
+            //var splitDate = search.Date.Split('-');
+
+            //var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
 
 
-            //U slucaju da query nije prazan odradjujemo where
             if (!string.IsNullOrEmpty(search.Title) || !string.IsNullOrWhiteSpace(search.Title))
             {
                 query = query.Where(x => x.Title.ToLower().Contains(search.Title.ToLower()));
@@ -50,14 +56,12 @@ namespace MoviePlus.Implementation.Queries
 
             var skipCount = search.ItemsPerPage * (search.CurrentPage - 1);
 
-            //Obavezno je na kraju dodati .ToList()
             var response = new PageResponse<MovieDto>
             {
 
                 TotalCount = query.Count(),
                 ItemsPerPage = search.ItemsPerPage,
                 CurrentPage = search.CurrentPage,
-                //Skip(skipCount) - broj podataka koji se preskace
                 Items = query.Skip(skipCount).Take(search.ItemsPerPage).Select(x => new MovieDto
                 {
                     Id = x.Id,
@@ -65,7 +69,7 @@ namespace MoviePlus.Implementation.Queries
                     Description = x.Description,
                     Duration = x.Duration,
                     Image = x.Image,
-                    Screening = x.Screenings.Where(s => s.ScreeningTime == searchDate).Select(s => new ScreeningDto
+                    Screening = x.Screenings.Select(s => new ScreeningDto
                     {
                         Id = s.Id,
                         ScreeningTime = s.ScreeningTime,

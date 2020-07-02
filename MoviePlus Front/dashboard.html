@@ -79,6 +79,8 @@ var selectedTime = "15";
 
 var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${leadingZero(currentDate)}`;
 
+var currentFullDate = `${currentJoinDate}T${selectedTime}:00:00`;
+
 $('#date').val(currentJoinDate);
 
 $('#screeningTime').on('change', function() {
@@ -151,10 +153,14 @@ function callApi() {
                     let screeningDate = takeDate(sc.screeningTime);
                     let screeningTime = takeTime(sc.screeningTime);
 
-                    html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
+                    if(currentFullDate == sc.screeningTime) {
+
+                      html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
                       <p><b>Auditorium</b>: <span class="aud-name">${sc.auditoriumName}</span></p>
                       <input type="hidden" name="screening" id="screening" value="${sc.id}">
                       <input type="hidden" name="aud" id="aud-id" value="${sc.auditoriumId}">`;
+                    }
+
                   }
 
                   html += `<button class="buy-ticket btn btn-primary">Buy Ticket</button>
