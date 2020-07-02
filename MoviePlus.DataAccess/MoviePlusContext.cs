@@ -22,14 +22,6 @@ namespace MoviePlus.DataAccess
                    Username = "adminAdmin",
                    Password = "A12450CFF6FB7A97C975BFB7FCBB8F7E",
                 },
-                new User {
-                   Id =2,
-                   FirstName = "User",
-                   LastName = "user",
-                   Email = "user@gmail.com",
-                   Username = "userUser",
-                   Password = "6583122D691EAFAADB3583F0B0F122CA"
-                },
             };
 
             //Proveriti kasnije UseCaseId
@@ -55,113 +47,77 @@ namespace MoviePlus.DataAccess
                     UserId = 1,
                     UseCaseId = 4,
                 },
-
                  new UserUseCases {
                     Id = 5,
-                    UserId = 2,
-                    UseCaseId = 6,
-                },
-                new UserUseCases {
-                    Id = 6,
-                    UserId = 2,
-                    UseCaseId = 7,
-                },
-                new UserUseCases {
-                    Id = 7,
-                    UserId = 2,
-                    UseCaseId = 8,
-                },
-                new UserUseCases {
-                    Id = 8,
-                    UserId = 2,
-                    UseCaseId = 9,
-                },
-                 new UserUseCases {
-                    Id = 9,
-                    UserId = 2,
-                    UseCaseId = 10,
-                },
-                new UserUseCases {
-                    Id = 10,
-                    UserId = 2,
-                    UseCaseId = 11,
-                },
-                new UserUseCases {
-                    Id = 11,
-                    UserId = 2,
-                    UseCaseId = 12,
-                },
-                new UserUseCases {
-                    Id = 12,
-                    UserId = 2,
-                    UseCaseId = 13,
-                },
-                new UserUseCases {
-                    Id = 13,
-                    UserId = 2,
-                    UseCaseId = 3,
-                },
-                new UserUseCases {
-                    Id = 14,
                     UserId = 1,
                     UseCaseId = 5,
                 },
                 new UserUseCases {
-                    Id = 15,
+                    Id = 6,
                     UserId = 1,
                     UseCaseId = 6,
                 },
                 new UserUseCases {
-                    Id = 16,
+                    Id = 7,
                     UserId = 1,
                     UseCaseId = 7,
                 },
                 new UserUseCases {
-                    Id = 17,
+                    Id = 8,
                     UserId = 1,
                     UseCaseId = 8,
                 },
-                new UserUseCases {
-                    Id = 18,
+                 new UserUseCases {
+                    Id = 9,
                     UserId = 1,
                     UseCaseId = 9,
                 },
                 new UserUseCases {
-                    Id = 19,
+                    Id = 10,
                     UserId = 1,
                     UseCaseId = 10,
-
                 },
-                 new UserUseCases {
-                    Id = 20,
+                new UserUseCases {
+                    Id = 11,
                     UserId = 1,
                     UseCaseId = 11,
-
                 },
-                  new UserUseCases {
-                    Id = 21,
+                new UserUseCases {
+                    Id = 12,
                     UserId = 1,
                     UseCaseId = 12,
-
                 },
-                   new UserUseCases {
-                    Id = 22,
+                new UserUseCases {
+                    Id = 13,
                     UserId = 1,
                     UseCaseId = 13,
-
                 },
-                   new UserUseCases {
-                    Id = 23,
+                 new UserUseCases {
+                    Id = 14,
                     UserId = 1,
                     UseCaseId = 14,
-
                 },
-                   new UserUseCases {
-                    Id = 24,
+                  new UserUseCases {
+                    Id = 15,
                     UserId = 1,
                     UseCaseId = 15,
-
                 },
+                   new UserUseCases {
+                    Id = 16,
+                    UserId = 1,
+                    UseCaseId = 16,
+                },
+                   new UserUseCases {
+                    Id = 17,
+                    UserId = 1,
+                    UseCaseId = 17,
+                },
+                   new UserUseCases {
+                    Id = 18,
+                    UserId = 1,
+                    UseCaseId = 18,
+                },
+
             };
 
             var movies = new List<Movie>
@@ -227,46 +183,40 @@ namespace MoviePlus.DataAccess
                 },
                 new Screening {
                     Id = 2,
-                    MovieId = 1,
+                    MovieId = 2,
                     AuditoriumId = 2,
-                    ScreeningTime = new DateTime (2020, 7, 5, 15, 0, 0)
+                    ScreeningTime = new DateTime (2020, 7, 2, 15, 0, 0)
                 },
                 new Screening {
                     Id = 3,
-                    MovieId = 2,
+                    MovieId = 3,
                     AuditoriumId = 2,
-                    ScreeningTime = new DateTime (2020, 7, 2, 17, 0, 0)
+                    ScreeningTime = new DateTime (2020, 7, 3, 15, 0, 0)
                 },
                 new Screening {
                     Id = 4,
-                    MovieId = 3,
-                    AuditoriumId = 2,
-                    ScreeningTime = new DateTime (2020, 7, 3, 20, 0, 0)
+                    MovieId = 4,
+                    AuditoriumId = 1,
+                    ScreeningTime = new DateTime (2020, 7, 6, 17, 0, 0)
                 },
-                //new Screening {
-                //    Id = 5,
-                //    MovieId = 4,
-                //    AuditoriumId = 1,
-                //    ScreeningTime = new DateTime (2020, 7, 3, 20, 0, 0)
-                //},
-                //new Screening {
-                //    Id = 6,
-                //    MovieId = 4,
-                //    AuditoriumId = 2,
-                //    ScreeningTime = new DateTime (2020, 7, 4, 17, 0, 0)
-                //},
-                //new Screening {
-                //    Id = 7,
-                //    MovieId = 6,
-                //    AuditoriumId = 1,
-                //    ScreeningTime = new DateTime (2020, 7, 5, 15, 0, 0)
-                //},
-                //new Screening {
-                //    Id = 8,
-                //    MovieId = 7,
-                //    AuditoriumId = 1,
-                //    ScreeningTime = new DateTime (2020, 7, 2, 20, 0, 0)
-                //},
+                new Screening {
+                    Id = 5,
+                    MovieId = 4,
+                    AuditoriumId = 2,
+                    ScreeningTime = new DateTime (2020, 7, 4, 17, 0, 0)
+                },
+                new Screening {
+                    Id = 6,
+                    MovieId = 6,
+                    AuditoriumId = 1,
+                    ScreeningTime = new DateTime (2020, 7, 5, 15, 0, 0)
+                },
+                new Screening {
+                    Id = 7,
+                    MovieId = 7,
+                    AuditoriumId = 1,
+                    ScreeningTime = new DateTime (2020, 7, 2, 20, 0, 0)
+                },
             };
 
 
@@ -317,77 +267,137 @@ namespace MoviePlus.DataAccess
                 new Seat
                 {
                     Id = 6,
+                    Number = 6,
+                    AuditoriumId = 1
+                },
+                new Seat
+                {
+                    Id = 7,
+                    Number = 7,
+                    AuditoriumId = 1
+                },
+                new Seat
+                {
+                    Id = 8,
+                    Number = 8,
+                    AuditoriumId = 1
+                },
+                new Seat
+                {
+                    Id = 9,
+                    Number = 9,
+                    AuditoriumId = 1
+                },
+                new Seat
+                {
+                    Id = 10,
+                    Number = 10,
+                    AuditoriumId = 1
+                },
+                 new Seat
+                {
+                    Id = 11,
                     Number = 1,
                     AuditoriumId = 2
                 },
                 new Seat
                 {
-                    Id = 7,
+                    Id = 12,
                     Number = 2,
                     AuditoriumId = 2
                 },
                 new Seat
                 {
-                    Id = 8,
+                    Id = 13,
                     Number = 3,
                     AuditoriumId = 2
                 },
                 new Seat
                 {
-                    Id = 9,
+                    Id = 14,
                     Number = 4,
                     AuditoriumId = 2
                 },
                 new Seat
                 {
-                    Id = 10,
+                    Id = 15,
                     Number = 5,
+                    AuditoriumId = 2
+                },
+                new Seat
+                {
+                    Id = 16,
+                    Number = 6,
+                    AuditoriumId = 2
+                },
+                new Seat
+                {
+                    Id = 17,
+                    Number = 7,
+                    AuditoriumId = 2
+                },
+                new Seat
+                {
+                    Id = 18,
+                    Number = 8,
+                    AuditoriumId = 2
+                },
+                new Seat
+                {
+                    Id = 19,
+                    Number = 9,
+                    AuditoriumId = 2
+                },
+                new Seat
+                {
+                    Id = 20,
+                    Number = 10,
                     AuditoriumId = 2
                 },
             };
 
-            var reservations = new List<Reservation>
-            {
-                new Reservation {
-                   Id = 1,
-                   UserId = 1,
-                   ScreeningId = 1
-                },
-                new Reservation {
-                   Id = 2,
-                   UserId = 1,
-                   ScreeningId = 2
-                },
-                 new Reservation {
-                   Id = 3,
-                   UserId = 2,
-                   ScreeningId = 1
-                },
-                  new Reservation {
-                   Id = 4,
-                   UserId = 2,
-                   ScreeningId = 3
-                },
-            };
+            //var reservations = new List<Reservation>
+            //{
+            //    new Reservation {
+            //       Id = 1,
+            //       UserId = 1,
+            //       ScreeningId = 1
+            //    },
+            //    new Reservation {
+            //       Id = 2,
+            //       UserId = 1,
+            //       ScreeningId = 2
+            //    },
+            //     new Reservation {
+            //       Id = 3,
+            //       UserId = 2,
+            //       ScreeningId = 1
+            //    },
+            //      new Reservation {
+            //       Id = 4,
+            //       UserId = 2,
+            //       ScreeningId = 3
+            //    },
+            //};
 
-            var seatReservations = new List<SeatReserved>
-            {
-                new SeatReserved {
-                    ReservationId = 1,
-                    SeatId = 1,
-                    ScreeningId = 1
-                },
-                 new SeatReserved {
-                    ReservationId = 2,
-                    SeatId = 2,
-                    ScreeningId = 1
-                },
-                  new SeatReserved {
-                    ReservationId = 2,
-                    SeatId = 3,
-                    ScreeningId = 3
-                }
-            };
+            //var seatReservations = new List<SeatReserved>
+            //{
+            //    new SeatReserved {
+            //        ReservationId = 1,
+            //        SeatId = 1,
+            //        ScreeningId = 1
+            //    },
+            //     new SeatReserved {
+            //        ReservationId = 2,
+            //        SeatId = 2,
+            //        ScreeningId = 1
+            //    },
+            //      new SeatReserved {
+            //        ReservationId = 2,
+            //        SeatId = 3,
+            //        ScreeningId = 3
+            //    }
+            //};
 
 
             modelBuilder.Entity<User>().HasData(users);
@@ -396,8 +406,8 @@ namespace MoviePlus.DataAccess
             modelBuilder.Entity<Screening>().HasData(screening);
             modelBuilder.Entity<Auditorium>().HasData(auditoriums);
             modelBuilder.Entity<Seat>().HasData(seats);
-            modelBuilder.Entity<Reservation>().HasData(reservations);
-            modelBuilder.Entity<SeatReserved>().HasData(seatReservations);
+            //modelBuilder.Entity<Reservation>().HasData(reservations);
+            //modelBuilder.Entity<SeatReserved>().HasData(seatReservations);
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new MovieConfiguration());

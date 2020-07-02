@@ -31,6 +31,20 @@
     <Compile Remove="Migrations\20200701104755_SeatReserved composite key.Designer.cs" />
     <Compile Remove="Migrations\20200701105009_SeatReserved composite key.cs" />
     <Compile Remove="Migrations\20200701105009_SeatReserved composite key.Designer.cs" />
+    <Compile Remove="Migrations\20200701195917_seeder.cs" />
+    <Compile Remove="Migrations\20200701195917_seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701200012_seeder.cs" />
+    <Compile Remove="Migrations\20200701200012_seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701200155_seeder.cs" />
+    <Compile Remove="Migrations\20200701200155_seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701200307_seeder.cs" />
+    <Compile Remove="Migrations\20200701200307_seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200701212420_admin use cases.cs" />
+    <Compile Remove="Migrations\20200701212420_admin use cases.Designer.cs" />
+    <Compile Remove="Migrations\20200701213119_screening seeder.cs" />
+    <Compile Remove="Migrations\20200701213119_screening seeder.Designer.cs" />
+    <Compile Remove="Migrations\20200702022620_Cascade delete.cs" />
+    <Compile Remove="Migrations\20200702022620_Cascade delete.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

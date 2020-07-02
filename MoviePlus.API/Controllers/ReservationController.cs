@@ -57,8 +57,13 @@ namespace MoviePlus.API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id,
+            [FromServices] IDeleteReservation command)
         {
+
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
         }
     }
 }

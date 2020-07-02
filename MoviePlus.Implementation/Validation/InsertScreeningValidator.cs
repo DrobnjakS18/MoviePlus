@@ -4,6 +4,7 @@ using MoviePlus.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace MoviePlus.Implementation.Validation
@@ -12,10 +13,18 @@ namespace MoviePlus.Implementation.Validation
     {
         public InsertScreeningValidator(MoviePlusContext context)
         {
-            //RuleFor(x => x.ScreeningTime)
-            //   .NotEmpty()
-            //   .Must(x => !context.Screenings.Any(u => u.ScreeningTime == x. && u.AuditoriumId == auditorumId))
-            //   .WithMessage($"Screening Time in Auditorium {auditorumId} is already reserved.");
+            RuleFor(x => x.MovieId)
+               .NotEmpty();
+
+            RuleFor(x => x.AuditoriumId)
+              .NotEmpty();
+
+
+            RuleFor(x => x.ScreeningTime)
+              .NotEmpty()
+              .GreaterThan(DateTime.Now)
+              .WithMessage("Date must not be in past");
+
         }
     }
 }

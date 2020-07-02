@@ -31,6 +31,7 @@ namespace MoviePlus.API.Core
                 object response = null;
                 var statusCode = StatusCodes.Status500InternalServerError;
 
+
                 switch (ex)
                 {
                     case UnauthorizedException _:
@@ -51,6 +52,7 @@ namespace MoviePlus.API.Core
                         statusCode = StatusCodes.Status422UnprocessableEntity;
                         response = new
                         {
+
                             message = "Validation failed",
                             errors = validation.Errors.Select(x => new {
                                 x.PropertyName,
@@ -58,6 +60,7 @@ namespace MoviePlus.API.Core
                             })
                         };
                         break;
+
                 }
 
                 httpContext.Response.StatusCode = statusCode;

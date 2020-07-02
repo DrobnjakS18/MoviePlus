@@ -32,6 +32,7 @@ namespace MoviePlus.Implementation.Queries
             if (user != null)
             {
 
+
                 return new UserDto
                 {
 
@@ -41,15 +42,17 @@ namespace MoviePlus.Implementation.Queries
                     Email = user.Email,
                     Username = user.Username,
                     //Koristiti include za dohvatenje podataka iz vezivnih tabela
-                    Tickets = _context.Reservations.Include(u => u.User).Include(s => s.Screening).Where(u => u.UserId == user.Id).Select(r => new MovieDto
+                    Tickets = _context.Reservations.Include(u => u.User).Include(s => s.Screening).Include(s => s.SeatReserveds).Where(u => u.UserId == user.Id).Select(r => new MovieDto
                     {
                         Id = r.Screening.Movie.Id,
+                        ReservationId = r.Id,
                         Title = r.Screening.Movie.Title,
                         Description = r.Screening.Movie.Description,
                         Duration = r.Screening.Movie.Duration,
                         Image = r.Screening.Movie.Image,
                         ScreeningTime = r.Screening.ScreeningTime,
-                        Auditorium = r.Screening.Auditorium.Name
+                        Auditorium = r.Screening.Auditorium.Name,
+                        SeatNumber = r.SeatReserveds.Where(s => s.ScreeningId == r.ScreeningId).First().Seat.Number
                     }).ToList()
 
             };

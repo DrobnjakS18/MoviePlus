@@ -55,6 +55,7 @@ namespace MoviePlus.API.Controllers
 
         // POST api/user
         [HttpPost]
+        [Authorize]
         public IActionResult Post(
             [FromBody] UserDto request, 
             [FromServices] IRegisterUser command)
@@ -66,14 +67,20 @@ namespace MoviePlus.API.Controllers
 
         // PUT: api/User/5
         [HttpPut("{id}")]
+        [Authorize]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Authorize]
+        public IActionResult Delete(int id,
+            [FromServices] IDeleteUser command)
         {
+            _executor.ExecuteCommand(command, id);
+
+            return NoContent();
         }
     }
 }

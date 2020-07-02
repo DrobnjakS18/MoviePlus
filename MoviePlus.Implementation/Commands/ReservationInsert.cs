@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoviePlus.Application.Commands;
 using MoviePlus.Application.Dto;
+using MoviePlus.Application.Email;
 using MoviePlus.DataAccess;
 using MoviePlus.Domain;
 using System;
@@ -14,11 +15,12 @@ namespace MoviePlus.Implementation.Commands
     {
 
         private readonly MoviePlusContext _context;
+        private readonly IEmailSender _email;
 
-        public ReservationInsert(MoviePlusContext context)
+        public ReservationInsert(MoviePlusContext context, IEmailSender email)
         {
             _context = context;
-
+            _email = email;
         }
         public int Id => 11;
 
@@ -54,6 +56,16 @@ namespace MoviePlus.Implementation.Commands
 
                     _context.SeatReserved.Add(seatReserved);
                     _context.SaveChanges();
+
+
+                    var userEmail = _context.Users.Where(s => s.Id == request.UserId).First().Email;
+
+                    _email.Send(new EmailDto
+                    {
+                        EmailTo = userEmail,
+                        Subject = "Movie Plus Reservation",
+                        Content = "<h1>Ticket successfully reserved</h1> "
+                    });
 
 
                     transaction.Commit();

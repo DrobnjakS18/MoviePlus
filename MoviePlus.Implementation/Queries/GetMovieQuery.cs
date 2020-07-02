@@ -30,18 +30,11 @@ namespace MoviePlus.Implementation.Queries
             //gradimo query
             var query = _context.Movies.AsQueryable();
 
-            if (!string.IsNullOrEmpty(search.Date) || !string.IsNullOrWhiteSpace(search.Date) || !string.IsNullOrEmpty(search.Time) || !string.IsNullOrWhiteSpace(search.Time))
-            {
-                var splitDate = search.Date.Split('-');
+            var splitDate = search.Date.Split('-');
 
-                var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
+            var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
 
-                if (searchDate < DateTime.Now) {
-                    throw new NotFoundException(this.Id, typeof(MovieDto));
-                }
-
-                query = query.Where(m => m.Screenings.Where(s => s.ScreeningTime == searchDate).Any());
-            }
+            query = query.Where(m => m.Screenings.Where(s => s.ScreeningTime == searchDate).Any());
 
 
             //U slucaju da query nije prazan odradjujemo where
@@ -72,14 +65,13 @@ namespace MoviePlus.Implementation.Queries
                     Description = x.Description,
                     Duration = x.Duration,
                     Image = x.Image,
-                    Screening = x.Screenings.Select(s => new ScreeningDto
+                    Screening = x.Screenings.Where(s => s.ScreeningTime == searchDate).Select(s => new ScreeningDto
                     {
                         Id = s.Id,
                         ScreeningTime = s.ScreeningTime,
                         MovieId = s.MovieId,
                         AuditoriumName = s.Auditorium.Name,
-                        //Kolona IsActive ako je true znaci da je slobodna, false znaci da je rezervisana
-                        Seats = s.SeatReserveds.Where(s => s.IsActive == true).Count()
+                        AuditoriumId = s.Auditorium.Id
                     }).ToList()
                 }).ToList()
             };

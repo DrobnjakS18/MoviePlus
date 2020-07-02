@@ -50,7 +50,6 @@
            <div class="row">
             <h4><u>Tickets:</u></h4>
              <div id="tickets"></div>
-            
         </div>
       </div>
     </div>
@@ -93,12 +92,41 @@
                       <p><b>Duration</b>: ${item.duration} min.</p>
                       <p><b>Date</b>: ${takeFullDate(item.screeningTime)}</p>
                       <p><b>Auditorium</b>: ${item.auditorium}</p>
-                      <button class="btn btn-danger">Cancel</button>
+                      <p><b>Seat Number:</b>: ${item.seatNumber}</p>
+                      <input type="hidden" name="res" id="res-id" value="${item.reservationId}">
+                      <button class="cancel-ticket btn btn-danger">Cancel</button>
                     </div>
                   </div>`;
             }
 
             $('#tickets').html(html);
+
+
+            $('.cancel-ticket').on('click', function() {
+
+              let resid = $('#res-id').val();
+
+              $.ajax({
+                  type: "DELETE",
+                  contentType: "application/json",
+                  url: `http://localhost:5101/api/reservation/${resid}`,
+                  headers : {
+                    'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+                  },
+                  success: function(data) {
+                    alert("Reservation succesfully canceled");
+                    location.reload();
+                  },
+                  error: function(xhr, status, error) {
+                    var status = xhr.status;
+                    if(status == 401) {
+                      alert("No token");
+                    } else {
+                      alert("Application is not currently working. Please come back later");
+                    }
+                  }
+              });
+            });
 
           },
           error: function(xhr, status, error) {

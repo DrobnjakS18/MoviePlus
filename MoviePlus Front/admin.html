@@ -43,6 +43,7 @@
       <div class="row mt-5 pl-3 d-flex">
         <button class="admin-users btn btn-secondary mr-3 px-5">Users</button>
         <button class="admin-movies btn btn-secondary mr-3 px-5">Movies</button>
+        <button class="admin-screen btn btn-secondary mr-3 px-5">Screening Time</button>
         <button class="admin-logs btn btn-secondary px-5">Logs</button>
       </div>
       <div class="row mt-3 movie-search-bar">
@@ -75,34 +76,32 @@
     <script src="js/script.js"></script>
     <script>
 
-var startDate = null;
+      var startDate = null;
 
-$('#start').on('change', function() {
-  
-  let date = $(this).val();
-  startDate = date;
-  getLogs();
-});
+        $('#start').on('change', function() {
 
-var endDate = null;
+        let date = $(this).val();
+        startDate = date;
+        getLogs();
+        });
 
-$('#end').on('change', function() {
-  
-  let date = $(this).val();
-  endDate = date;
-  getLogs();
-});
+        var endDate = null;
 
+        $('#end').on('change', function() {
 
+        let date = $(this).val();
+        endDate = date;
+        getLogs();
+        });
 
-      var searchActor= null;
-      function filterActors(){
+        var searchActor= null;
+        function filterActors(){
         var searchA = $('.actor-search').val();
 
         searchActor = searchA;
 
         getLogs();
-      }
+        }
 
       var searchCase = null;
       function filterCase(){
@@ -160,7 +159,7 @@ $('#end').on('change', function() {
                         <td>${item.username}</td>`;
                         
                         if(item.id != 1) {
-                          html += `<td><i class="fa fa-trash text-danger" aria-hidden="true"></i></td>`;
+                          html += `<td><i class="delete-user fa fa-trash text-danger" data-id="${item.id}" aria-hidden="true"></i></td>`;
                         }
                         html += `</tr>`;
               }
@@ -180,6 +179,32 @@ $('#end').on('change', function() {
 
               $(".api-display").html(html);
               $('.pages').html(pages);
+
+              $('.delete-user').on('click', function() {
+
+                  var userId = $(this).data("id");
+
+                  $.ajax({
+                  type: "DELETE", // <- Change here
+                  contentType: "application/json",
+                  url: `http://localhost:5101/api/user/${userId}`,
+                  headers : {
+                    'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+                  },
+                  success: function(data) {
+                    alert("User succesfully deleted");
+                    location.reload();
+                  },
+                  error: function(xhr, status, error) {
+                    var status = xhr.status;
+                    if(status == 401) {
+                      alert("No token");
+                    } else {
+                      alert("Application is not currently working. Please come back later");
+                    }
+                  }
+                  });
+                });
 
             paginationLUser();
           },
@@ -270,6 +295,232 @@ $('#end').on('change', function() {
 
         }); 
         }
+
+
+        $('.admin-screen').on('click', function(e) {
+          e.preventDefault;
+          getScreeningTime();
+        });
+
+      function getScreeningTime() {
+        let pagQueryString = `ItemsPerPage=10`;
+
+
+        $.ajax({
+            method: "GET",
+            url: `http://localhost:5101/api/screening?${pagQueryString}`,
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+              },
+            //Mora da se definise contentType kako bi server podrzao JSON 
+            contentType: 'application/json',
+            dataType: "json",
+            success: function(data) {
+              console.log(data);
+              $("#total").html(data.executor.totalCount);
+              $('.admin-current-page').html(data.executor.currentPage);
+              $('.log-search-bar').hide();
+              $('.movie-search-bar').hide();
+              
+              let html = `<a href="/insertScreening.html" class="btn btn-primary float-right mb-3">Insert</a>
+              <table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Movie Title</th>
+                <th scope="col">Auditorium</th>
+                <th scope="col">Screening Time</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.movieName}</td>
+                        <td>${item.auditoriumName}</td>
+                        <td>${takeDate(item.screeningTime)} ${takeTime(item.screeningTime)}</td>
+                        <td><i class="update-screening fa fa-check text-success" data-id="${item.id}" aria-hidden="true"></i></td>
+                        <td><i class="delete-screening fa fa-trash text-danger" data-id="${item.id}" aria-hidden="true"></i></td>
+                        </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+
+             let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+
+              for(var page = 1; page <= data.executor.pageCount;page++){
+
+                pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+              }
+
+              pages += `</ul>`;
+
+
+              $(".api-display").html(html);
+              $('.pages').html(pages);
+
+
+              $('.delete-screening').on('click', function() {
+
+                let screeningId = $(this).data("id");
+
+                console.log(screeningId);
+
+                $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: `http://localhost:5101/api/screening/${screeningId}`,
+                headers : {
+                  'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+                },
+                success: function(data) {
+                  alert("Screening succesfully deleted");
+                  location.reload();
+                },
+                error: function(xhr, status, error) {
+                  var status = xhr.status;
+                  if(status == 401) {
+                    alert("No token");
+                  } else {
+                    alert("Application is not currently working. Please come back later");
+                  }
+                }
+                });
+
+
+                });
+
+              paginationScreening();
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              if(status == 401) {
+                alert("No token");
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
+            }
+        });
+      }
+
+
+
+
+      function paginationScreening() {
+
+$('.page').on('click', function() {
+  let clickedPage = $(this).data('page');
+
+  let pagPerPage = $("#perPage").val();
+
+  let pagQueryString = `ItemsPerPage=10`
+
+  pagQueryString += `&CurrentPage=${clickedPage}`;
+
+  $.ajax({
+            method: "GET",
+            url: `http://localhost:5101/api/screening?${pagQueryString}`,
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+              },
+            //Mora da se definise contentType kako bi server podrzao JSON 
+            contentType: 'application/json',
+            dataType: "json",
+            success: function(data) {
+              console.log(data);
+              $("#total").html(data.executor.totalCount);
+              $('.admin-current-page').html(data.executor.currentPage);
+              $('.log-search-bar').hide();
+              $('.movie-search-bar').hide();
+              
+              let html = `<a href="/insertScreening.html" class="btn btn-primary float-right mb-3">Insert</a>
+              <table class="table text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Movie Title</th>
+                <th scope="col">Auditorium</th>
+                <th scope="col">Screening Time</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+              for(let item of data.executor.items) {
+                html += `<tr>
+                        <th scope="row">${item.id}</th>
+                        <td>${item.movieName}</td>
+                        <td>${item.auditoriumName}</td>
+                        <td>${takeDate(item.screeningTime)} ${takeTime(item.screeningTime)}</td>
+                        <td><i class="update-movie fa fa-check text-success" data-id="${item.id}" aria-hidden="true"></i></td>
+                        <td><i class="delete-movie fa fa-trash text-danger" data-id="${item.id}" aria-hidden="true"></i></td>
+                        </tr>`;
+              }
+
+              html += `</tbody>
+             </table>`;
+
+             let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;
+
+              for(var page = 1; page <= data.executor.pageCount;page++){
+
+                pages += `<li class="page list-group-item" data-page="${page}">${page}</li>`;
+              }
+
+              pages += `</ul>`;
+
+
+              $(".api-display").html(html);
+              $('.pages').html(pages);
+
+              $('.delete-screening').on('click', function() {
+
+                  var screeningId= $(this).data("id");
+
+                  console.log(screeningId);
+
+                  $.ajax({
+                  type: "DELETE",
+                  contentType: "application/json",
+                  url: `http://localhost:5101/api/screening/${screeningId}`,
+                  headers : {
+                    'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+                  },
+                  success: function(data) {
+                    alert("Screening succesfully deleted");
+                    location.reload();
+                  },
+                  error: function(xhr, status, error) {
+                    var status = xhr.status;
+                    if(status == 401) {
+                      alert("No token");
+                    } else {
+                      alert("Application is not currently working. Please come back later");
+                    }
+                  }
+                  });
+
+                });
+
+              paginationScreening();
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              if(status == 401) {
+                alert("No token");
+              } else {
+                alert("Application is not currently working. Please come back later");
+              }
+            }
+        });
+
+}); 
+}
 
 
 
@@ -483,8 +734,7 @@ $('#end').on('change', function() {
                     }
                     });
                 });
-        
-              paginationLUser();
+                paginationMovies();
         
           },
           error: function(xhr, status, error) {
@@ -561,7 +811,7 @@ $('#end').on('change', function() {
                         <th scope="row">${item.id}</th>
                         <td>${item.actor}</td>
                         <td>${item.useCase}</td>
-                        <td>${item.date}</td>
+                        <td>${takeDate(item.date)}  ${takeTime(item.date)}</td>
                       </tr>`;
               }
 
@@ -646,7 +896,7 @@ $('#end').on('change', function() {
                         <th scope="row">${item.id}</th>
                         <td>${item.actor}</td>
                         <td>${item.useCase}</td>
-                        <td>${item.date}</td>
+                        <td>${takeDate(item.date)}  ${takeTime(item.date)}</td>
                       </tr>`;
               }
 

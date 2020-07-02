@@ -72,12 +72,12 @@
 
 
 var currentTime = new Date();    
-var currentDate = currentTime.getDate() +1;
+var currentDate = currentTime.getDate();
 var currentYear = currentTime.getFullYear();
 var currentMounth = currentTime.getMonth()+1;
 var selectedTime = "15";
 
-var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${currentDate}`;
+var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${leadingZero(currentDate)}`;
 
 $('#date').val(currentJoinDate);
 
@@ -89,11 +89,6 @@ $('#screeningTime').on('change', function() {
 
   callApi();
 });
-
-function leadingZero(time) {
-  var modified = (time< 10) ? "0"+ time : time;
-  return modified;
-}
 
 
 var selectedDate = null;
@@ -130,13 +125,11 @@ function callApi() {
     'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
   },
   success: function(data) {
-
-
     console.log(data);
-
     window.sessionStorage.actor = data.actor.id;
       $("#total").html(data.executor.totalCount);
       $('.current').html(data.executor.currentPage);
+
       //Podesiti use case koji ce da bude samo za admina
       if(jQuery.inArray(1, data.actor.allowedUseCases) !== -1) {
         $('.admin-panel').css('display','block');
@@ -158,12 +151,10 @@ function callApi() {
                     let screeningDate = takeDate(sc.screeningTime);
                     let screeningTime = takeTime(sc.screeningTime);
 
-                    if(selectedDate == screeningDate) {
-                      html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
+                    html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
                       <p><b>Auditorium</b>: <span class="aud-name">${sc.auditoriumName}</span></p>
-                      <p><b>Available seats</b>: ${sc.seats}</p>
-                      <input type="hidden" name="screening" id="screening" value="${sc.id}">`;
-                    }
+                      <input type="hidden" name="screening" id="screening" value="${sc.id}">
+                      <input type="hidden" name="aud" id="aud-id" value="${sc.auditoriumId}">`;
                   }
 
                   html += `<button class="buy-ticket btn btn-primary">Buy Ticket</button>
@@ -183,9 +174,7 @@ function callApi() {
       $(".movies").html(html);
       $('.pages').html(pages);
 
-
-
-
+      
       $('.buy-ticket').on('click', function(e) {
         e.preventDefault;
         let screeningString = $('#screening').val();
@@ -194,16 +183,9 @@ function callApi() {
 
         let screeningId = parseInt(screeningString);
 
-        let auditorium = $('.aud-name').text();
+        let audString = $('#aud-id').val();
 
-        let audId = null;
-        if(auditorium == "Auditorium 2") {
-          audId = 2;
-        } 
-
-        if(auditorium == "Auditorium 1") {
-          audId = 1;
-        } 
+        let audId = parseInt(audString);
 
         let podaci = {
           userid : userId,

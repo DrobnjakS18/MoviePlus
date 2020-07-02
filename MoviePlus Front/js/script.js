@@ -26,4 +26,9 @@ function takeTime(date) {
   return splitDate[1];
 }  
 
+function leadingZero(time) {
+  var modified = (time< 10) ? "0"+ time : time;
+  return modified;
+}
+
 

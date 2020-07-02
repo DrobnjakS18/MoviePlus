@@ -65,7 +65,7 @@ namespace MoviePlus.Implementation.Commands
             var currentUser = _context.Users.Find(lastId);
 
             //Lista slucajemo kojima korisnik moze da pristupi
-            var userUseCases = new List<int> { 2, 3, 4, 5 };
+            var userUseCases = new List<int> { 3, 6, 11, 12 };
 
             foreach (var cases in userUseCases)
             {

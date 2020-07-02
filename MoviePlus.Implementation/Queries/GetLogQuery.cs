@@ -24,7 +24,6 @@ namespace MoviePlus.Implementation.Queries
 
         public PageResponse<LogDto> Execute(LogSearch search)
         {
-            //gradimo query
             var query = _context.AuditLogger.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search.StartDate) && !string.IsNullOrWhiteSpace(search.EndDate))
@@ -70,13 +69,6 @@ namespace MoviePlus.Implementation.Queries
             
 
 
-
-
-
-
-
-
-
             if (!string.IsNullOrEmpty(search.Actor) || !string.IsNullOrWhiteSpace(search.Actor))
             {
                 query = query.Where(x => x.Actor.ToLower().Contains(search.Actor.ToLower()));
@@ -87,10 +79,8 @@ namespace MoviePlus.Implementation.Queries
                 query = query.Where(x => x.UseCaseName.ToLower().Contains(search.UseCase.ToLower()));
             }
 
-            //Predstavlja broj podataka koje treba da preskoci
             var skipCount = search.ItemsPerPage * (search.CurrentPage - 1);
 
-            //Obavezno je na kraju dodati .ToList()
             var response = new PageResponse<LogDto>
             {
 

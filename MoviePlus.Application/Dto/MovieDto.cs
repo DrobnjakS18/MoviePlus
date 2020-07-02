@@ -21,6 +21,10 @@ namespace MoviePlus.Application.Dto
 
         public string Time { get; set; }
 
+        public int SeatNumber { get; set; }
+
+        public int ReservationId { get; set; }
+
         public DateTime ScreeningTime { get; set; }
 
         public ICollection<ScreeningDto> Screening { get; set; }
