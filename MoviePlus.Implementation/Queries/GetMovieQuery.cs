@@ -39,10 +39,6 @@ namespace MoviePlus.Implementation.Queries
                 query = query.Where(m => m.Screenings.Where(s => s.ScreeningTime == searchDate).Any());
             }
 
-            //var splitDate = search.Date.Split('-');
-
-            //var searchDate = new DateTime(int.Parse(splitDate[0]), int.Parse(splitDate[1]), int.Parse(splitDate[2]), int.Parse(search.Time), 0, 0);
-
 
             if (!string.IsNullOrEmpty(search.Title) || !string.IsNullOrWhiteSpace(search.Title))
             {

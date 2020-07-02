@@ -19,7 +19,7 @@ namespace MoviePlus.Implementation.Validation
 
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .Must((dto, name) => !context.Movies.Any(p => p.Description == name && p.Id != dto.Id))//Posto je update pitamo jos da li naziv proizvoda postoji vec unutar baze ali sa razlicitim ID
+                .Must((dto, name) => !context.Movies.Any(p => p.Description == name && p.Id != dto.Id))
                 .WithMessage("Description name already exists in database");
 
             RuleFor(x => x.Duration)

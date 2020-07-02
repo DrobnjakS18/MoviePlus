@@ -42,11 +42,12 @@ namespace MoviePlus.API.Controllers
         }
 
         // GET: api/Screening/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         [Authorize]
-        public string Get(int id)
+        public IActionResult Get(int id,
+            [FromServices] IGetSingleScreeningQuery query)
         {
-            return "value";
+            return Ok(_executor.ExecuteQuery(query, id));
         }
 
         // POST: api/Screening
@@ -63,8 +64,14 @@ namespace MoviePlus.API.Controllers
         // PUT: api/Screening/5
         [HttpPut("{id}")]
         [Authorize]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id,
+            [FromBody] ScreeningDto request,
+            [FromServices] IScreeningUpdate command)
         {
+            request.Id = id;
+            _executor.ExecuteCommand(command, request);
+
+            return NoContent();
         }
 
         // DELETE: api/Screening/5

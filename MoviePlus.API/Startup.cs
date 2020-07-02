@@ -64,6 +64,8 @@ namespace MoviePlus.API
             services.AddTransient<IGetScreeningQuery, GetScreening>();
             services.AddTransient<IScreeningInsert, InsertScreening>();
             services.AddTransient<IScreeningDelete, DeleteScreening>();
+            services.AddTransient<IGetSingleScreeningQuery, GetSingleScreeningQuery>();
+            services.AddTransient<IScreeningUpdate, ScreeningUpdate>();
 
             services.AddTransient<IReservationInsert, ReservationInsert>();
             services.AddTransient<IDeleteReservation, DeleteReservation>();
@@ -74,6 +76,7 @@ namespace MoviePlus.API
             services.AddTransient<InsertScreeningValidator>();
             services.AddTransient<UpdateMovieValidator>();
             services.AddTransient<InsertScreeningValidator>();
+            services.AddTransient<UpdateScreeningValidator>();
             services.AddHttpContextAccessor();
             services.AddTransient<IApplicationUser>(x =>
             {

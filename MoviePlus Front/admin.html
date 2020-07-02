@@ -390,9 +390,16 @@
                   }
                 }
                 });
-
-
                 });
+
+
+
+                
+            $('.update-screening').on('click', function() {
+              var screeningId = $(this).data("id");
+              window.sessionStorage.screeningId = screeningId;
+              window.location = `/updateScreening.html`;
+            });
 
               paginationScreening();
             },
@@ -518,11 +525,8 @@ $('.page').on('click', function() {
               }
             }
         });
-
 }); 
 }
-
-
 
 
       // 
@@ -748,11 +752,6 @@ $('.page').on('click', function() {
 
       }); 
       }
-
-
-
-
-
 
       // 
       // LOGS

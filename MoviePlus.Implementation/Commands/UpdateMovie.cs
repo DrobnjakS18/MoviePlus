@@ -41,6 +41,7 @@ namespace MoviePlus.Implementation.Commands
             movie.Description = request.Description;
             movie.Duration = request.Duration;
             movie.Image = request.Image;
+            movie.UpdatedAt = DateTime.Now;
 
             _context.SaveChanges();
         }
