@@ -45,6 +45,12 @@
     <Compile Remove="Migrations\20200701213119_screening seeder.Designer.cs" />
     <Compile Remove="Migrations\20200702022620_Cascade delete.cs" />
     <Compile Remove="Migrations\20200702022620_Cascade delete.Designer.cs" />
+    <Compile Remove="Migrations\20200710205939_Auditorium 3.cs" />
+    <Compile Remove="Migrations\20200710205939_Auditorium 3.Designer.cs" />
+    <Compile Remove="Migrations\20200710210027_Auditorium 3.cs" />
+    <Compile Remove="Migrations\20200710210027_Auditorium 3.Designer.cs" />
+    <Compile Remove="Migrations\20200710210319_Auditorium 3.cs" />
+    <Compile Remove="Migrations\20200710210319_Auditorium 3.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

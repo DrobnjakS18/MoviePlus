@@ -63,7 +63,7 @@
             data: JSON.stringify(data),
             success: function(data) {
               if(data) {
-              window.sessionStorage.accessToken = data.token;
+              window.sessionStorage.accessToken = data.token; 
               alert('Welcome!');
               window.location.href = "/dashboard.html";
               }

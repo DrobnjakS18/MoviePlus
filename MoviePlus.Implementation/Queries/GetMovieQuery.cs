@@ -69,6 +69,10 @@ namespace MoviePlus.Implementation.Queries
                     {
                         Id = s.Id,
                         ScreeningTime = s.ScreeningTime,
+                        MovieName = x.Title,
+                        Description = x.Description,
+                        Duration = x.Duration,
+                        Image = x.Image,
                         MovieId = s.MovieId,
                         AuditoriumName = s.Auditorium.Name,
                         AuditoriumId = s.Auditorium.Id

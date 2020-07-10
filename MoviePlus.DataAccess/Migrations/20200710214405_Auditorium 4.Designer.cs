@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoviePlus.DataAccess;
 
 namespace MoviePlus.DataAccess.Migrations
 {
     [DbContext(typeof(MoviePlusContext))]
-    partial class MoviePlusContextModelSnapshot : ModelSnapshot
+    [Migration("20200710214405_Auditorium 4")]
+    partial class Auditorium4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

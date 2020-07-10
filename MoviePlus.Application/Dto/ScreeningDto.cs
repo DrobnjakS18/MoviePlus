@@ -13,6 +13,12 @@ namespace MoviePlus.Application.Dto
 
         public string MovieName { get; set; }
 
+        public string Description { get; set; }
+
+        public int Duration { get; set; }
+
+        public string Image { get; set; }
+
         public string AuditoriumName { get; set; }
 
         public int AuditoriumId { get; set; }

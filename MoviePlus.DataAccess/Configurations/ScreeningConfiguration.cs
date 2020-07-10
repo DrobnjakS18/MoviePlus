@@ -15,7 +15,7 @@ namespace MoviePlus.DataAccess.Configurations
 
             builder.HasMany(r => r.Reservations).WithOne(r => r.Screening).HasForeignKey(r => r.ScreeningId).OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(s => s.SeatReserveds).WithOne(s => s.Screening).HasForeignKey(s => s.ScreeningId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(s => s.SeatReserveds).WithOne(s => s.Screening).HasForeignKey(s => s.ScreeningId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

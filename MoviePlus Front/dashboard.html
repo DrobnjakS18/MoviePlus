@@ -75,7 +75,7 @@ var currentTime = new Date();
 var currentDate = currentTime.getDate();
 var currentYear = currentTime.getFullYear();
 var currentMounth = currentTime.getMonth()+1;
-var selectedTime = "15";
+
 
 var currentJoinDate = `${currentYear}-${leadingZero(currentMounth)}-${leadingZero(currentDate)}`;
 
@@ -83,23 +83,29 @@ var currentFullDate = `${currentJoinDate}T${selectedTime}:00:00`;
 
 $('#date').val(currentJoinDate);
 
+var selectedTime = "15";
+var selectedDate = currentJoinDate;
+var selectedFullDate = `${selectedDate}T${selectedTime}:00:00`;
+
 $('#screeningTime').on('change', function() {
 
   let time = $(this).val();
 
   selectedTime = time;
-
+  selectedFullDate = `${selectedDate}T${selectedTime}:00:00`;
   callApi();
 });
 
 
-var selectedDate = null;
 $('#date').on('change', function() {
   
   let date = $(this).val();
   selectedDate = date
+  selectedFullDate = `${selectedDate}T${selectedTime}:00:00`;
   callApi();
 });
+
+
 
 
 var searchName = null;
@@ -139,33 +145,33 @@ function callApi() {
 
       let html = "";
 
-      for(let item of data.executor.items) {
-        html += `<div class="col-12 my-3 d-flex  justify-content-center rounded">
+      for(let sc of data.executor.items) {
+        for(let item of sc.screening) {
+          if(selectedFullDate == item.screeningTime) {
+            let screeningDate = takeDate(item.screeningTime);
+            let screeningTime = takeTime(item.screeningTime);
+
+            html += `<div class="col-12 my-3 d-flex  justify-content-center rounded">
                 <div class="col-3">
                 <img class="img-fluid my-4" src="http://localhost:5101/Images/${item.image}" alt="Movie image">
                 </div>
                 <div class="col-5 my-auto single-movie">
-                  <h5><b>Title</b>: ${item.title}</h5>
+                  <h5><b>Title</b>: ${item.movieName}</h5>
                   <p><b>Descripiton:</b> ${item.description}</p>
-                  <p><b>Duration</b>: ${item.duration} min.</p>`;
+                  <p><b>Duration</b>: ${item.duration} min.</p>
+                    <p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
+                      <p><b>Auditorium</b>: <span class="aud-name">${item.auditoriumName}</span></p>
+                      <input type="hidden" name="screening" id="screening" value="${item.id}">
+                      <input type="hidden" name="aud" id="aud-id" value="${item.auditoriumId}">
 
-                  for(let sc of item.screening){
-                    let screeningDate = takeDate(sc.screeningTime);
-                    let screeningTime = takeTime(sc.screeningTime);
-
-                    if(currentFullDate == sc.screeningTime) {
-
-                      html += `<p><b>Date</b>: ${screeningDate} ${screeningTime }</p>
-                      <p><b>Auditorium</b>: <span class="aud-name">${sc.auditoriumName}</span></p>
-                      <input type="hidden" name="screening" id="screening" value="${sc.id}">
-                      <input type="hidden" name="aud" id="aud-id" value="${sc.auditoriumId}">`;
-                    }
-
-                  }
-
-                  html += `<button class="buy-ticket btn btn-primary">Buy Ticket</button>
+                  <button class="buy-ticket btn btn-primary">Buy Ticket</button>
                 </div>
               </div>`;
+
+           }
+
+        }
+
       }
 
       let pages = `<ul class="list-group list-group-horizontal justify-content-center">`;

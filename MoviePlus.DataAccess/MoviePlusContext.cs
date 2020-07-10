@@ -230,6 +230,14 @@ namespace MoviePlus.DataAccess
                     Id = 2,
                     Name = "Auditorium 2"
                 },
+                 new Auditorium {
+                    Id = 3,
+                    Name = "Auditorium 3"
+                },
+                  new Auditorium {
+                    Id = 4,
+                    Name = "Auditorium 4"
+                },
             };
 
             var seats = new List<Seat>
@@ -353,6 +361,126 @@ namespace MoviePlus.DataAccess
                     Id = 20,
                     Number = 10,
                     AuditoriumId = 2
+                },
+                 new Seat
+                {
+                    Id = 21,
+                    Number = 1,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 22,
+                    Number = 2,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 23,
+                    Number = 3,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 24,
+                    Number = 4,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 25,
+                    Number = 5,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 26,
+                    Number = 6,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 27,
+                    Number = 7,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 28,
+                    Number = 8,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 29,
+                    Number = 9,
+                    AuditoriumId = 3
+                },
+                new Seat
+                {
+                    Id = 30,
+                    Number = 10,
+                    AuditoriumId = 3
+                },
+                 new Seat
+                {
+                    Id = 31,
+                    Number = 1,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 32,
+                    Number = 2,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 33,
+                    Number = 3,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 34,
+                    Number = 4,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 35,
+                    Number = 5,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 36,
+                    Number = 6,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 37,
+                    Number = 7,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 38,
+                    Number = 8,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 39,
+                    Number = 9,
+                    AuditoriumId = 4
+                },
+                new Seat
+                {
+                    Id = 40,
+                    Number = 10,
+                    AuditoriumId = 4
                 },
             };
 
