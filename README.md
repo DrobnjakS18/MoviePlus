@@ -1,3 +1,3 @@
 # MoviePlus
 
-Dokumentacija unutar git wiki
+Dokumentacija unutar GitHub Wiki
