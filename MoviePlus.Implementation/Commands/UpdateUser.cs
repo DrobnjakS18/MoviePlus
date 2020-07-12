@@ -8,6 +8,7 @@ using MoviePlus.Domain;
 using MoviePlus.Implementation.Validation;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MoviePlus.Implementation.Commands
@@ -42,25 +43,45 @@ namespace MoviePlus.Implementation.Commands
             {
                 throw new UnauthorizedException(this, _actor);
             }
-            if (request.FirstName == null && request.LastName == null)
-            {
-                request.FirstName = user.FirstName;
-                request.LastName = user.LastName;
-            }
-            if (request.FirstName == null && request.LastName != null)
-            {
+
+
+            if (string.IsNullOrWhiteSpace(request.FirstName)) {
                 request.FirstName = user.FirstName;
             }
-            if (request.FirstName != null && request.LastName == null)
+
+            if (string.IsNullOrWhiteSpace(request.LastName))
             {
                 request.LastName = user.LastName;
             }
 
-            if (request.Password == null)
+            if (!string.IsNullOrWhiteSpace(request.Password))
             {
+                var md5 = MD5.Create();
+
+                byte[] passwordBytes = Encoding.ASCII.GetBytes(request.Password);
+
+                byte[] hash = md5.ComputeHash(passwordBytes);
+
+                var stringBuilder = new StringBuilder();
+
+                for (int i = 0; i < hash.Length; i++)
+                {
+
+                    stringBuilder.Append(hash[i].ToString("X2"));
+                }
+
+                var hashedPassword = stringBuilder.ToString();
+
+                request.Password = hashedPassword;
+
+            }
+            else {
+               
                 request.Password = user.Password;
             }
-            if (request.Email == null)
+
+
+            if (string.IsNullOrWhiteSpace(request.Email))
             {
                 request.Email = user.Email;
             }
@@ -71,6 +92,7 @@ namespace MoviePlus.Implementation.Commands
             user.LastName = request.LastName;
             user.Password = request.Password;
             user.Email = request.Email;
+            user.UpdatedAt = DateTime.Now;
 
 
             _context.SaveChanges();

@@ -145,6 +145,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
+                <th scope="col">Update</th>
                 <th scope="col">Delete</th>
               </tr>
             </thead>
@@ -156,11 +157,15 @@
                         <td>${item.firstName}</td>
                         <td>${item.lastName}</td>
                         <td>${item.email}</td>
-                        <td>${item.username}</td>`;
-                        
-                        if(item.id != 1) {
-                          html += `<td><i class="delete-user fa fa-trash text-danger" data-id="${item.id}" aria-hidden="true"></i></td>`;
+                        <td>${item.username}</td>
+                        <td>`;
+
+                        if(item.id == 1) {
+                          html += `<i class="update-admin fa fa-check text-success" data-id="${item.id}" aria-hidden="true"></i>`;
                         }
+                        html += `</td>`;
+                        
+                        html += `<td><i class="delete-user fa fa-trash text-danger" data-id="${item.id}" aria-hidden="true"></i></td>`;
                         html += `</tr>`;
               }
 
@@ -205,6 +210,12 @@
                   }
                   });
                 });
+
+                $('.update-admin').on('click', function() {
+              var userId = $(this).data("id");
+              window.sessionStorage.userId = userId;
+              window.location = `/updateUser.html`;
+            });
 
             paginationLUser();
           },

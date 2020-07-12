@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Movie</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+      <div class="container">
+        <a class="navbar-brand text-white" href="/dashboard.html">MOVIE PLUS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/dashboard.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link admin-panel" href="/admin.html">Admin Panel</a>
+          </li>
+        </ul>
+      </div>
+      <a href="#" class="log-out text-white">Log out</a>
+      </div>
+    </nav>
+      <div class="container mt-5">
+        
+        <div class="row">
+            <div class="col-6 offset-3 mt-5">
+                <h2 class="text-center">Update User</h2>
+                <form enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" id="firstname"  placeholder="Enter First Name">                          
+                    </div>
+                    <div class="form-group">
+                      <label for="lastname">Last Name</label><br>
+                      <input type="text" class="form-control" id="lastname"  placeholder="Enter Last Name">                    
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email"  placeholder="Enter Email">                           
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username"  placeholder="Enter Username">                           
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password"  placeholder="Enter Password">                           
+                    </div>
+                    <button type="submit" class="user-submit btn btn-primary mb-5">Submit</button>
+                </form>
+                <div class="errors alert alert-danger mt-3"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+<script>
+
+    getUser();
+    function getUser() {
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:5101/api/user/" +  window.sessionStorage.userId,
+            headers : {
+                'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            //Mora da se definise contentType kako bi server podrzao JSON 
+            contentType: 'application/json',
+            dataType: "json",
+            success: function(data) {
+              if(data) {
+                $('#firstname').val(data.executor.firstName);
+                $("#lastname").val(data.executor.lastName);
+                $("#email").val(data.executor.email);
+                $("#username").val(data.executor.username);
+              }
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+              
+              alert(status)
+            }
+        });
+    }
+
+    if(window.sessionStorage.actor == "1") {
+        $('.admin-panel').css('display','block');
+      };
+
+
+
+    $('.user-submit').click( function(e) {
+        e.preventDefault();
+        var firstName = $('#firstname').val();
+        var lastName = $("#lastname").val();
+        var email = $("#email").val();
+        var username = $("#username").val();
+        var password = $('#password').val();
+
+        let podaci = {
+            firstName : firstName,
+            lastName : lastName,
+            email : email,
+            username : username,
+            password : password
+        };
+
+        $.ajax({
+            method: "PUT",
+            url: "http://localhost:5101/api/user/" + window.sessionStorage.userId,
+            headers : {
+              'Authorization' : `Bearer ${window.sessionStorage.accessToken}`
+            },
+            contentType: 'application/json',
+            dataType: "json",
+            data: JSON.stringify(podaci),
+            success: function() {
+             alert("User succesfully updated");
+             window.location = `/admin.html`;
+            },
+            error: function(xhr, status, error) {
+              var status = xhr.status;
+
+              switch(status) {
+                case 422:  
+                    var errors = xhr.responseJSON.errors;
+
+                    var temp = "<ul>";
+                    for(let er of errors) {
+                      temp += `<li>${er.ErrorMessage}</li>`;
+                    }
+                    temp += "</ul>";
+
+                    $('.errors').html(temp).show();
+                  break;
+                 case 404:
+                   alert('User not found');
+                   break; 
+                default:  
+                  alert("Application is not currently working. Please come back later");
+                  break;
+              }
+            }
+        });
+    });
+</script>
+  </body>
+</html>

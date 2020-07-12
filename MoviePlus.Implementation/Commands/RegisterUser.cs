@@ -42,8 +42,11 @@ namespace MoviePlus.Implementation.Commands
 
             var stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < hash.Length; i++)
+            for (int i = 0; i < hash.Length; i++) {
+
                 stringBuilder.Append(hash[i].ToString("X2"));
+            }
+               
 
             var hashedPassword = stringBuilder.ToString();
 
