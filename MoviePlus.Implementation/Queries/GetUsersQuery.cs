@@ -26,20 +26,29 @@ namespace MoviePlus.Implementation.Queries
 
         public PageResponse<UserDto> Execute(UsersSearch search)
         {
-            //gradimo query
             var query = _context.Users.AsQueryable();
 
-            //Predstavlja broj podataka koje treba da preskoci
+            if (!string.IsNullOrEmpty(search.FirstName) || !string.IsNullOrWhiteSpace(search.FirstName))
+            {
+                query = query.Where(x => x.FirstName.ToLower().Contains(search.FirstName.ToLower()));
+            }
+            if (!string.IsNullOrEmpty(search.LastName) || !string.IsNullOrWhiteSpace(search.LastName))
+            {
+                query = query.Where(x => x.LastName.ToLower().Contains(search.LastName.ToLower()));
+            }
+            if (!string.IsNullOrEmpty(search.Username) || !string.IsNullOrWhiteSpace(search.Username))
+            {
+                query = query.Where(x => x.Username.ToLower().Contains(search.Username.ToLower()));
+            }
+
             var skipCount = search.ItemsPerPage * (search.CurrentPage - 1);
 
-            //Obavezno je na kraju dodati .ToList()
             var response = new PageResponse<UserDto>
             {
 
                 TotalCount = query.Count(),
                 ItemsPerPage = search.ItemsPerPage,
                 CurrentPage = search.CurrentPage,
-                //Skip(skipCount) - broj podataka koji se preskace
                 Items = query.Skip(skipCount).Take(search.ItemsPerPage).Select(x => new UserDto
                 {
                     Id = x.Id,

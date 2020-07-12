@@ -69,14 +69,35 @@ namespace MoviePlus.API
 
             services.AddTransient<IReservationInsert, ReservationInsert>();
             services.AddTransient<IDeleteReservation, DeleteReservation>();
+            services.AddTransient<IGetReservationQuery, GetReservation>();
 
             services.AddTransient<IRegisterUser, RegisterUser>();
+            services.AddTransient<IUserUpdate, UpdateUser>();
+
+            services.AddTransient<IGetAuditoirumsQuery, GetAuditoriumsQuery>();
+            services.AddTransient<IGetSingleAuditoriumQuery, GetSingleAuditoriumQuery>();
+            services.AddTransient<IAuditoriumInsert, AuditoriumInsert>();
+            services.AddTransient<IAuditoriumUpdate, AuditoriumUpdate>();
+            services.AddTransient<IAuditoriumDelete, DeleteAuditorium>();
+
+            services.AddTransient<IGetSeatsQuery, GetSeatsQuery>();
+            services.AddTransient<IGetSingleSeatQuery, GetSingleSeatQuery>();
+            services.AddTransient<ISeatInsert, SeatInsert>();
+            services.AddTransient<ISeatUpdate, UpdateSeat>();
+            services.AddTransient<ISeatDelete, SeatDelete>();
+
             services.AddTransient<RegisterUserValidator>();
             services.AddTransient<InsertMovieValidator>();
             services.AddTransient<InsertScreeningValidator>();
             services.AddTransient<UpdateMovieValidator>();
             services.AddTransient<InsertScreeningValidator>();
             services.AddTransient<UpdateScreeningValidator>();
+            services.AddTransient<UpdateUserValidator>();
+            services.AddTransient<InsertAuditoriumValidator>();
+            services.AddTransient<UpdateAuditoriumValidator>();
+            services.AddTransient<InsertSeatValidator>();
+            services.AddTransient<UpdateSeatValidator>();
+
             services.AddHttpContextAccessor();
             services.AddTransient<IApplicationUser>(x =>
             {

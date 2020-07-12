@@ -68,8 +68,15 @@ namespace MoviePlus.API.Controllers
         // PUT: api/User/5
         [HttpPut("{id}")]
         [Authorize]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id,
+            [FromBody] UserUpdateDto dto,
+            [FromServices] IUserUpdate command)
         {
+            dto.Id = id;
+
+            _executor.ExecuteCommand(command, dto);
+
+            return StatusCode(StatusCodes.Status204NoContent);
         }
 
         // DELETE: api/ApiWithActions/5

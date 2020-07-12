@@ -30,7 +30,7 @@ namespace MoviePlus.Implementation.Queries
 
             if (movie == null)
             {
-                new NotFoundException(search, typeof(Movie));
+               throw new NotFoundException(search, typeof(Movie));
             }
 
             var response = new MovieDto

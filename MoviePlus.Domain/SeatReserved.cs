@@ -6,7 +6,7 @@ namespace MoviePlus.Domain
 {
     public class SeatReserved
     {
-
+        //Ne nasledjuju Entity klasu zato sto imaju kompozitni kljuc( kombinacija stranih kljuceva koji predstavljaju primarni kljuc za ovu tabelu) 
         public int SeatId { get; set; }
 
         public int ReservationId { get; set; }

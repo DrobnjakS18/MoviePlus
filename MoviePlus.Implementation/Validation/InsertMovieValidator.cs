@@ -32,8 +32,6 @@ namespace MoviePlus.Implementation.Validation
 
             RuleFor(x => x.Image)
                 .NotEmpty();
-
-         
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MoviePlus.Application;
 using MoviePlus.Application.Commands;
 using MoviePlus.Application.Dto;
+using MoviePlus.Application.Queries;
 
 namespace MoviePlus.API.Controllers
 {
@@ -32,10 +33,12 @@ namespace MoviePlus.API.Controllers
         }
 
         // GET: api/Reservation/5
-        [HttpGet("{id}", Name = "Getasdsad")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetReservation")]
+        public IActionResult Get(int id,
+            [FromServices] IGetReservationQuery query)
         {
-            return "value";
+            var result = _executor.ExecuteQuery(query, id);
+            return Ok(result);
         }
 
         // POST: api/Reservation

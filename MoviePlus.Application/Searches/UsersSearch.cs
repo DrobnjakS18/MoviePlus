@@ -12,6 +12,6 @@ namespace MoviePlus.Application.Searches
 
         public string Email { get; set; }
 
-        public string Usernam { get; set; }
+        public string Username { get; set; }
     }
 }
